@@ -1,0 +1,41 @@
+  <link rel="stylesheet" href="css/deploy.css"> 
+    <div class="content">
+	 	<div class="panel panel-primary dashboard-panel">
+	    	
+	 		<!-- <div class="panel-heading">Application Details</div> -->
+	 		<div class="panel-body fixed-panel">
+	 		<table st-table="$ctrl.appslist" class="table table-striped">
+				<thead>
+				<tr>
+					<th st-sort="appid">first name</th>
+					<th st-sort="appname">last name</th>
+				</tr>
+			<!-- 	<tr>
+					<th>
+						<input st-search="'firstName'" placeholder="search for firstname" class="input-sm form-control" type="search"/>
+					</th>
+					<th colspan="4">
+						<input st-search placeholder="global search" class="input-sm form-control" type="search"/>
+					</th>
+				</tr> -->
+				</thead>
+				<tbody>
+				<tr ng-repeat="row in $ctrl.appslist">
+					<td>{{row.appid| uppercase}}</td>
+					<td>{{row.appname}}</td>
+					
+					
+				</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="2" class="text-center">
+							<div st-pagination="" st-items-by-page="5" st-displayed-pages=""></div>
+						</td>
+					</tr>
+				</tfoot>
+			</table>	
+
+	 		</div>
+	 	</div>
+	</div>

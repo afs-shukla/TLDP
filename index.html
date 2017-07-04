@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <title>Home</title>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, 
+    initial-scale=1, maximum-scale=1, user-scalable=no">
+     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/restaurant.css">
+    <link rel="stylesheet" href="css/common.css">
+
+          <!-- Libs -->
+    <script src="lib/jquery-2.1.4.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-ui-router.min.js"></script>
+    <script src="lib/ng-file-upload/ng-file-upload-shim.min.js"></script>
+    <script src="lib/ng-file-upload/ng-file-upload.min.js"></script>
+     <script src="lib/smart-table.min.js"></script>
+
+    <!-- Main Restaurant Module -->
+    <script src="src/restaurant.module.js"></script>
+
+    <!-- Common Module -->
+    <script src="src/common/common.module.js"></script>
+    <script src="src/common/loading/loading.component.js"></script>
+    <script src="src/common/loading/loading.interceptor.js"></script>
+    <script src="src/common/menu.service.js"></script>
+    <script src="src/common/sidebar.js"></script>
+
+    
+
+    <!-- Public Module -->
+    <script src="src/public/public.module.js"></script>
+    <script src="src/public/public.routes.js"></script>
+    <script src="src/public/menu/menu.controller.js"></script>
+    <script src="src/public/menu-category/menu-category.component.js"></script>
+    <script src="src/public/menu-items/menu-items.controller.js"></script>
+    <script src="src/public/menu-item/menu-item.component.js"></script>
+
+    <!-- deploy.component.js-->
+    <script src="src/apps/app.component.js"></script>
+    <script src="src/apps/app-search.component.js"></script>
+    <script src="src/apps/app-searchlist.component.js"></script>
+    <script src="src/apps/app-extrainfo.component.js"></script>
+    <script src="src/apps/app-details.modal.js"></script>
+    
+    
+
+    
+
+    <!-- ADMIN SITE -->
+    <script src="src/admin/admin.module.js"></script>
+    <script src="src/admin/admin.routes.js"></script>
+    <script src="src/admin/admin-auth/admin-auth.controller.js"></script>
+    <script src="src/admin/services/login.service.js"></script>
+    <script src="src/admin/services/current-user.service.js"></script>
+    <script src="src/admin/services/authredirector.service.js"></script>
+    <script src="src/admin/auth.interceptor.js"></script>
+    <script src="src/admin/login/login.controller.js"></script>
+    <script src="src/admin/category/category-list.component.js"></script>
+    <script src="src/admin/category/category-items.controller.js"></script>
+    <script src="src/admin/menu-item/menu-item-edit.controller.js"></script>
+    <script src="src/admin/menu-item/menu-item-admin.component.js"></script>
+
+</head>
+<body ng-app="restaurant" ng-strict-di>
+    <header >
+       <!--<nav class="navbar navbar-inverse container-fluid navbar-fixed-top">-->
+        <nav id="header-nav" class="navbar navbar-inverse ">
+        <div>
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" 
+
+                data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" 
+
+                aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+               
+                        <div class="navbar-brand">
+             
+                   
+                        <img src="images/boalogo.png" alt="Kosher certification">
+                        <!--<span>Kosher Certified</span>-->
+                     
+                    </div>
+              <!--<a class="navbar-brand" 
+              <img src="images/boalogo.jpg" alt="Deployment Manager"> 
+              <span>Deployment Manager</span> </a>-->
+            
+                 </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="Home.html">
+                    <span class="glyphicon glyphicon-home"></span> 
+                    Home</a></li>
+                    <li><a href="#">
+                    <span class="glyphicon glyphicon-king"></span>  
+                    About</a></li>
+ 
+                </ul>
+           
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon 
+                    glyphicon-log-in"></span> Login</a></li>
+                    <li><a href="#"><span class="glyphicon 
+                    glyphicon-user"></span> Register</a></li>
+ 
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    </header>
+    
+
+        <ui-view>
+             <div class="text-center initial-loading">
+        <h2>Loading Site...</h2>
+        </div>
+      </ui-view>
+
+     <footer class="navbar-inverse  ">
+      <div class="container">
+            
+        <div class="text-center">
+          &copy; Copyright David Chu's China Bistro 2016 |
+          <a ui-sref="admin.auth">Admin</a></div>
+      </div>
+    </footer>
+
+  
+   
+</body>
+</html>
