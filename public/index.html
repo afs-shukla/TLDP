@@ -65,6 +65,7 @@
 
 </head>
 <body ng-app="restaurant" ng-strict-di>
+   <div class="container-fluid">
     <header >
        <!--<nav class="navbar navbar-inverse container-fluid navbar-fixed-top">-->
         <nav id="header-nav" class="navbar navbar-inverse ">
@@ -118,23 +119,25 @@
     </nav>
     </header>
     
-
-        <ui-view>
+    
+      <ui-view>
              <div class="text-center initial-loading">
         <h2>Loading Site...</h2>
         </div>
       </ui-view>
+     
 
-     <footer class="navbar-inverse  ">
-      <div class="container">
+   <!--  <footer>
+
+     <nav id="footer-nav" class="navbar navbar-inverse ">
             
         <div class="text-center">
-          &copy; Copyright David Chu's China Bistro 2016 |
+          &copy; Copyright Tech Warriors 2017 |
           <a ui-sref="admin.auth">Admin</a></div>
-      </div>
-    </footer>
+      </nav>
+      
+    </footer>  -->
 
-  
-   
+  </div>
 </body>
 </html>
