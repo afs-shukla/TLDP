@@ -7,13 +7,44 @@ angular.module('public')
 
 AppSearchService.$inject = ['$http', 'ApiPath'];
 function AppSearchService($http, ApiPath) {
-  var searchservice = this;
+  var appsService = this;
 
-  searchservice.findApps = function (appid,appname,desc) {
-    return $http.get(ApiPath + '/findApps',{params:{appid:appid, appname:appname, desc:desc }}).then(function (response) {
-      return response.data;
-    });
+  appsService.findApps = function (appid,appname,desc) {
+    return $http.get(ApiPath + '/findApps',
+    	{
+    		params:{appid:appid, appname:appname, desc:desc }
+    	})
   };
+
+  appsService.findAppById = function (appid) {
+    return $http.get(ApiPath + '/findAppById',
+    	{
+    		params:{appid:appid}
+    	})
+  };
+
+   appsService.removeAppById = function (appid) {
+    return $http.get(ApiPath + '/removeAppById',
+    	{
+    		params:{appid:appid}
+    	})
+  };
+
+  appsService.removeAppById = function (appid) {
+    return $http.get(ApiPath + '/removeAppById',
+    	{
+    		params:{appid:appid}
+    	})
+  };
+
+    appsService.addApp = function (appdata) {
+    return $http.get(ApiPath + '/removeAppById',
+    	{
+    		params:{appid:appid}
+    	})
+  };
+
+
 
 
 
