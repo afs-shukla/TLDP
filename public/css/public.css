@@ -1,13 +1,4 @@
 
-
-body > .container {
-  padding-top: 10px;
-  padding-bottom: 10px;
-
-  background-color: white;
-  
-}
-
 #menu-tile, #specials-tile, #map-tile {
   height: 250px;
   width: 100%;

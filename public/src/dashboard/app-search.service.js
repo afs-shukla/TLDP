@@ -37,12 +37,20 @@ function AppSearchService($http, ApiPath) {
     	})
   };
 
-    appsService.addApp = function (appdata) {
+   appsService.addApp = function (appdata) {
     return $http.get(ApiPath + '/removeAppById',
     	{
     		params:{appid:appid}
     	})
   };
+
+  appsService.Updatepp = function (appdata) {
+    return $http.get(ApiPath + '/removeAppById',
+    	{
+    		params:{appid:appid}
+    	})
+  };
+
 
 
 

@@ -3,7 +3,7 @@
 
 angular.module('public')
 .component('appExtrainfo', {
-  templateUrl: 'src/apps/app-extrainfo.view.html',
+  templateUrl: 'src/dashboard/app-extrainfo.view.html',
   // bindings: {
   //   appdetails: '<'
   // }

@@ -3,7 +3,7 @@
 
 angular.module('public')
 .component('appSearch', {
-  templateUrl: 'src/apps/app-search.view.html',
+  templateUrl: 'src/dashboard/app-search.view.html',
   // bindings: {
   //   appdetails: '<'
   // }
