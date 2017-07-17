@@ -1,7 +1,7 @@
 (function () {
 "use strict";
 
-angular.module('public')
+angular.module('apps')
 .component('appDetails', {
   templateUrl: 'src/apps/apps-details.modal.view.html',
   // bindings: {

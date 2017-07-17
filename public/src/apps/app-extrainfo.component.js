@@ -1,9 +1,9 @@
 (function () {
 "use strict";
 
-angular.module('public')
+angular.module('apps')
 .component('appExtrainfo', {
-  templateUrl: 'src/dashboard/app-extrainfo.view.html',
+  templateUrl: 'src/apps/app-extrainfo.view.html',
   // bindings: {
   //   appdetails: '<'
   // }

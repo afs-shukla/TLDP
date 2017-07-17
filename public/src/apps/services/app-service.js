@@ -1,18 +1,19 @@
 (function(){
 "use strict";
-angular.module('public')
-.service('AppSearchService', AppSearchService);
+angular.module('apps')
+.service('AppsService', AppsService);
 
 
 
-AppSearchService.$inject = ['$http', 'ApiPath'];
-function AppSearchService($http, ApiPath) {
+AppsService.$inject = ['$http', 'ApiPath'];
+function AppsService($http, ApiPath) {
   var appsService = this;
 
-  appsService.findApps = function (appid,appname,desc) {
-    return $http.get(ApiPath + '/findApps',
+  appsService.findApps = function (searchparams) {
+    console.log("AppsService:"+searchparams.appid)
+    return $http.get(ApiPath + '/apps',
     	{
-    		params:{appid:appid, appname:appname, desc:desc }
+    		params:{appid:searchparams.appid, appname:searchparams.appname, desc:searchparams.desc }
     	})
   };
 
@@ -51,7 +52,7 @@ function AppSearchService($http, ApiPath) {
     	})
   };
 
-
+}
 
 
 

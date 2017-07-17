@@ -1,7 +1,7 @@
 (function () {
 "use strict";
 
-angular.module('public')
+angular.module('apps')
 .component('deployDisplay', {
   templateUrl: 'src/apps/app-view.html',
   // bindings: {

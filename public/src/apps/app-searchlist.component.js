@@ -1,9 +1,9 @@
 (function () {
 "use strict";
 
-angular.module('public')
+angular.module('apps')
 .component('searchList', {
-  templateUrl: 'src/dashboard/app-searchlist.view.html',
+  templateUrl: 'src/apps/app-searchlist.view.html',
   // bindings: {
   //   appdetails: '<'
   // }
