@@ -1,4 +1,4 @@
-package repositories.user
+package repositories
 
 import org.junit.Test
 import org.junit.Assert._

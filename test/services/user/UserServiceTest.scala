@@ -3,8 +3,8 @@ package services.user
 import org.mockito.Mockito._
 import org.junit.Test
 import org.junit.Assert._
-import repositories.user.UserRepositoryComponent
 import domain.user.User
+import repositories.UserRepositoryComponent
 
 class UserServiceTest extends UserServiceComponentImpl
                       with UserRepositoryMockComponent {

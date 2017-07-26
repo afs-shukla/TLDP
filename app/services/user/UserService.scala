@@ -1,7 +1,7 @@
 package services.user
 
 import domain.user.User
-import repositories.user.UserRepositoryComponent
+import repositories.UserRepositoryComponent
 
 trait UserServiceComponent {
     

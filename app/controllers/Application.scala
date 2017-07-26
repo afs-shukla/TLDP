@@ -3,9 +3,9 @@ package controllers
 import controllers.user.UserController
 import play.api._
 import play.api.mvc._
+import repositories.UserRepositoryComponentImpl
 
 import services.user.UserServiceComponentImpl
-import repositories.user.UserRepositoryComponentImpl
 
 object Application extends UserController
                    with UserServiceComponentImpl

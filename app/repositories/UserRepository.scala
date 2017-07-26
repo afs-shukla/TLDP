@@ -1,4 +1,4 @@
-package repositories.user
+package repositories
 
 import domain.user.User
 import java.util.concurrent.ConcurrentHashMap
