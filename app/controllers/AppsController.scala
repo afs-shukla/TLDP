@@ -1,14 +1,10 @@
-package controllers.apps
+package controllers
 
 import javax.inject.Inject
 
-
 import play.api.mvc._
-import play.mvc.Controller
 
-import scala.concurrent.{ExecutionContext, Future, Await}
-import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.duration.Duration
+import scala.concurrent.ExecutionContext
 
 
 /**
@@ -35,8 +31,8 @@ import scala.concurrent.duration.Duration
 
   }
 
-  def search(id:String,name:String,desc:String)={
-
+  def search(id:String,name:String,desc:String)= Action {
+    Ok("Hello world")
   }
 
 
