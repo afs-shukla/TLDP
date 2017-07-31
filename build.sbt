@@ -1,15 +1,15 @@
-import play.routes.compiler.InjectedRoutesGenerator
-import play.sbt.PlayImport._
+import _root_.play.sbt.PlayImport._
+import _root_.play.sbt.PlayScala
+import _root_.play.sbt.routes.RoutesKeys._
+import _root_.play.twirl.sbt.Import.TwirlKeys
 
-
-
-name := """scala-play-rest-example"""
+name := """play-slick-example"""
 
 version := "1.0-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
-scalaVersion := "2.11.7"
+scalaVersion := "2.12.2"
 
 routesGenerator := InjectedRoutesGenerator
 

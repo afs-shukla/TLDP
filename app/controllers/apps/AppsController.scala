@@ -16,14 +16,29 @@ import scala.concurrent.duration.Duration
   */
 
 
-  class AppsController @Inject()(      controllerComponents: ControllerComponents) (implicit executionContext: ExecutionContext) extends AbstractController(controllerComponents)
-  {
+  class AppsController @Inject()( cc: ControllerComponents) (implicit executionContext: ExecutionContext) extends AbstractController(cc){
 
 
-    /* import play.api.libs.json._
-     val db = Database.forConfig("slick.dbs.default")
-     implicit val residentWrites = Json.writes[Apps]*/
-    def app="satish"
+//  def getAppbyId(id:String)= Action {
+//implicit  request => Ok()
+//  }
+  def index = Action {
+    Ok("Hello world")
+  }
+  def getAllApps()={
+
+  }
+  def saveApp()={
+
+  }
+  def updateApp()={
+
+  }
+
+  def search(id:String,name:String,desc:String)={
+
+  }
+
 
 
 }

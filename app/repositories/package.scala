@@ -4,6 +4,6 @@
 package object repositories {
 import slick.jdbc.SQLServerProfile
 
-  val db=D
+  val db=""
 
 }

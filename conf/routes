@@ -5,7 +5,7 @@
 # Home page
 GET /                                controllers.Assets.at(path="/public", file ="index.html")
 GET /*file                           controllers.Assets.at(path="/public", file)
-GET /apps/findApps                   controllers.Application
+GET /apps/search/:id/:name/:desc     controllers.Application.search(id:String,name:String,desc:String)
 #GET     /                           controllers.Application.index
 #POST    /users                      controllers.Application.createUser
 #GET     /users/:id                  controllers.Application.findUserById(id: Long)
