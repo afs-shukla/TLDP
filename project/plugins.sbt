@@ -5,7 +5,7 @@
 //resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/"
 resolvers += "sbt-idea-repo" at "http://mpeltonen.github.com/maven/"
 
-addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.6.0")
+addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.6.2")
 
 addSbtPlugin("com.jamesward" %% "play-auto-refresh" % "0.0.15")
 

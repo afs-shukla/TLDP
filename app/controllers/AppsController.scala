@@ -12,7 +12,7 @@ import scala.concurrent.ExecutionContext
   */
 
 
-  class AppsController @Inject()( cc: ControllerComponents) (implicit executionContext: ExecutionContext) extends AbstractController(cc){
+class AppsController @Inject()( cc: ControllerComponents) (implicit executionContext: ExecutionContext) extends AbstractController(cc) {
 
 
 //  def getAppbyId(id:String)= Action {
@@ -21,8 +21,8 @@ import scala.concurrent.ExecutionContext
   def index = Action {
     Ok("Hello world")
   }
-  def getAllApps()={
-
+  def getAllApps()= Action {
+   Ok("get all apps called")
   }
   def saveApp()={
 
@@ -31,8 +31,13 @@ import scala.concurrent.ExecutionContext
 
   }
 
+  def findById(id:String)=Action {
+   // println("Find by id is called")
+    Ok("Find by id called")
+  }
+
   def search(id:String,name:String,desc:String)= Action {
-    Ok("Hello world")
+    Ok("search apps called")
   }
 
 

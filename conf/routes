@@ -3,14 +3,17 @@
 # ~~~~
 
 # Home page
-GET /                                controllers.Assets.at(path="/public", file ="index.html")
-GET /*file                           controllers.Assets.at(path="/public", file)
-GET /apps/search/:id/:name/:desc     controllers.AppsController.search(id:String,name:String,desc:String)
-#GET     /                           controllers.Application.index
-#POST    /users                      controllers.Application.createUser
-#GET     /users/:id                  controllers.Application.findUserById(id: Long)
-#PUT     /users/:id                  controllers.Application.updateUser(id: Long)
-#DELETE  /users/:id                  controllers.Application.deleteUser(id: Long)
+GET       /                                               controllers.Assets.at(path="/public", file ="index.html")
+#GET      /*file                                     controllers.Assets.at(path="/public", file)
+#GET      /                                           controllers.AppsController.index
+GET      /apps/search/:id/:name/:desc                controllers.AppsController.search(id:String,name:String,desc:String)
+GET      /abc/getAllApps/                            controllers.AppsController.getAllApps
+GET      /apps/findById/:id                           controllers.AppsController.findById(id:String)
+#GET     /                                           controllers.Application.index
+#POST    /users                                      controllers.Application.createUser
+#GET     /users/:id                                  controllers.Application.findUserById(id: Long)
+#PUT     /users/:id                                  controllers.Application.updateUser(id: Long)
+#DELETE  /users/:id                                  controllers.Application.deleteUser(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
-#GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET     /*file               controllers.Assets.at(path="/public", file)
