@@ -7,7 +7,7 @@ GET       /                                               controllers.Assets.at(
 #GET      /*file                                     controllers.Assets.at(path="/public", file)
 #GET      /                                           controllers.AppsController.index
 GET      /apps/search/:id/:name/:desc                controllers.AppsController.search(id:String,name:String,desc:String)
-GET      /abc/getAllApps/                            controllers.AppsController.getAllApps
+GET      /getAllApps                                 controllers.AppsController.listRegisteredApps
 GET      /apps/findById/:id                           controllers.AppsController.findById(id:String)
 #GET     /                                           controllers.Application.index
 #POST    /users                                      controllers.Application.createUser

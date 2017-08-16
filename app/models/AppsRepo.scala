@@ -14,8 +14,8 @@ import scala.concurrent.Future
   */
 
 
-case class App1(id:Long,appId:String,appName: String,appDesc:String,appType:String,appContainer:String,appDepType:String,
-                appProjManager:String,appProcessName:String,appTeam:String,appRepository:String,appPlaybook:String)
+case class TargetApps(id:Long, appId:String, appName: String, appDesc:String, appType:String, appContainer:String, appDepType:String,
+                      appProjManager:String, appProcessName:String, appTeam:String, appRepository:String, appPlaybook:String)
 
 class AppsRepo @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) {
 
@@ -24,19 +24,19 @@ class AppsRepo @Inject() (protected val dbConfigProvider: DatabaseConfigProvider
 
   import dbConfig.profile.api._
 
-  private[models] val Apps = TableQuery[AppsTable]
+  val Apps = TableQuery[AppsTable]
 
 
-  private def _findById(id: Long): DBIO[Option[App1]] =
+  private def _findById(id: Long): DBIO[Option[TargetApps]] =
     Apps.filter(_.id === id).result.headOption
 
-  private def _findByName(name: String): Query[AppsTable, App1, List] =
+  private def _findByName(name: String): Query[AppsTable, TargetApps, List] =
     Apps.filter(_.appName === name).to[List]
 
-  def findById(id: Long): Future[Option[App1]] =
+  def findById(id: Long): Future[Option[TargetApps]] =
     db.run(_findById(id))
 
-  def findByName(name: String): Future[List[App1]] =
+  def findByName(name: String): Future[List[TargetApps]] =
     db.run(_findByName(name).result)
   /*
     def all: Future[List[Project]] =
@@ -48,19 +48,42 @@ class AppsRepo @Inject() (protected val dbConfigProvider: DatabaseConfigProvider
     }
   */
 
-/*
-  def delete(name: String): Future[Int] = {
-    val query = _findByName(name)
 
-    val interaction = for {
-      projects <- query.result
-      _ <- DBIO.sequence(projects.map(p => taskRepo._deleteAllInProject(p.id)))
-      projectsDeleted <- query.delete
-    } yield projectsDeleted
+  def delete(id: Long): Future[Int] = {
+    val action = Apps.filter(_.id === id).delete
 
-    db.run(interaction.transactionally)
+    db.run(action.transactionally)
   }
-*/
+
+  def appSearch(appId:Option[String],appName:Option[String],appDesc:Option[String]):Future[List[TargetApps]] ={
+    val action =  for {
+       applist <- Apps.filter( a =>
+                             appId.map (id =>
+                             a.appId like  s"%${id}%").getOrElse(slick.lifted.LiteralColumn(true)) &&
+                             appName.map ( name =>
+                             a.appName like s"%${name}%").getOrElse(slick.lifted.LiteralColumn(true)) &&
+                             appDesc.map ( desc=>
+                             a.appDesc like "%desc%").getOrElse(slick.lifted.LiteralColumn(true))
+      ).to[List]
+
+    }yield applist
+    db.run(action.result)
+
+
+  }
+
+  def updateApp(app:TargetApps)={
+    val action= Apps.filter (_.id === app.id ).map (c=>
+      (c.appId,c.appName,c.appDesc,c.appType,c.appContainer,c.appPlaybook,c.appDepType,c.appProcessName,
+        c.appProjManager,c.appRepository,c.appTeam)).
+      update(app.appId,app.appName,app.appDesc,app.appType,app.appContainer,app.appPlaybook,
+      app.appDepType,app.appProcessName,app.appProjManager,app.appRepository,app.appTeam)
+
+      db.run(action)
+
+  }
+
+
 
 /*  def addTask(color: String, projectId: Long): Future[Long] = {
     val interaction = for {
@@ -70,16 +93,16 @@ class AppsRepo @Inject() (protected val dbConfigProvider: DatabaseConfigProvider
 
     db.run(interaction.transactionally)
   }*/
-
-def all: Future[List[App1]] =
+//( "Action1","TestApp","TestDesc","Apptype","tomcat","ansible","Satish","GMOT","Magnu","http://localhost:3333/apprep","/home/abcd/playbooks/app123")
+def all: Future[List[TargetApps]] =
     db.run(Apps.to[List].result)
 def create(appId: String,appName:String,appDesc:String,appType:String,appContainer:String,appDepType:String,
            appProjManager:String,appProcessName:String,appTeam:String,appRepository:String,appPlaybook:String): Future[Long] = {
-  val project = App1(0, appId,appName,appDesc,appType,appContainer,appDepType,appProjManager,appProcessName,appTeam,appRepository,appPlaybook)
+  val project = TargetApps(0, appId,appName,appDesc,appType,appContainer,appDepType,appProjManager,appProcessName,appTeam,appRepository,appPlaybook)
   db.run(Apps returning Apps.map(_.id) += project)
 }
 
-  private[models] class AppsTable(tag: Tag) extends Table[App1](tag, "T_APP") {
+  class AppsTable(tag: Tag) extends Table[TargetApps](tag, "T_APP") {
     def id=column[Long]("ID",O.AutoInc,O.PrimaryKey)
     def appId = column[String]("C_APPID")
     def appName = column[String]("C_APPNAME")
@@ -94,10 +117,10 @@ def create(appId: String,appName:String,appDesc:String,appType:String,appContain
     def appPlaybook=column[String]("C_PLAYBOOK")
 
 
-    def * = (id, appId,appName,appDesc,appType,appContainer,appDepType,appProjManager,appProcessName,appTeam,appRepository,appPlaybook) <>(App1.tupled, App1.unapply)
+    def * = (id, appId,appName,appDesc,appType,appContainer,appDepType,appProjManager,appProcessName,appTeam,appRepository,appPlaybook) <>(TargetApps.tupled, TargetApps.unapply)
 
     def ? = (id.?, appId.?,appName.?,appDesc.?,appType.?,appContainer.?,appDepType.?,appProjManager.?,appProcessName.?,appTeam.?,appRepository.?,appPlaybook.?).
-      shaped.<>({ r => import r._; _1.map(_ => App1.tupled((_1.get, _2.get,_3.get,_4.get,_5.get,_6.get,_7.get,_8.get,_9.get,_10.get,_11.get,_12.get))) }, (_: Any) => throw new Exception("Inserting into ? projection not supported."))
+      shaped.<>({ r => import r._; _1.map(_ => TargetApps.tupled((_1.get, _2.get,_3.get,_4.get,_5.get,_6.get,_7.get,_8.get,_9.get,_10.get,_11.get,_12.get))) }, (_: Any) => throw new Exception("Inserting into ? projection not supported."))
 
   }
 
