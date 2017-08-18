@@ -13,10 +13,8 @@ import scala.concurrent.Future
   * Created by afssh on 09-08-2017.
   */
 
-
 case class TargetApps(id:Long, appId:String, appName: String, appDesc:String, appType:String, appContainer:String, appDepType:String,
                       appProjManager:String, appProcessName:String, appTeam:String, appRepository:String, appPlaybook:String)
-
 class AppsRepo @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) {
 
   val dbConfig = dbConfigProvider.get[JdbcProfile]

@@ -10,7 +10,7 @@ GET      /apps/search/:id/:name/:desc                controllers.AppsController.
 GET      /getAllApps                                 controllers.AppsController.listRegisteredApps
 GET      /apps/findById/:id                           controllers.AppsController.findById(id:String)
 #GET     /                                           controllers.Application.index
-#POST    /users                                      controllers.Application.createUser
+POST    /addApp                                     controllers.AppsController.addApp
 #GET     /users/:id                                  controllers.Application.findUserById(id: Long)
 #PUT     /users/:id                                  controllers.Application.updateUser(id: Long)
 #DELETE  /users/:id                                  controllers.Application.deleteUser(id: Long)
