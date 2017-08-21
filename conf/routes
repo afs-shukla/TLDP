@@ -2,18 +2,27 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+
 # Home page
-GET       /                                               controllers.Assets.at(path="/public", file ="index.html")
+GET       /                                          controllers.Assets.at(path="/public", file ="index.html")
 #GET      /*file                                     controllers.Assets.at(path="/public", file)
-#GET      /                                           controllers.AppsController.index
-GET      /apps/search/:id/:name/:desc                controllers.AppsController.search(id:String,name:String,desc:String)
+#GET      /                                          controllers.AppsController.index
+GET      /searchApps/:appId/:name/:desc              controllers.AppsController.searchApps(appId:String,name:String,desc:String)
 GET      /getAllApps                                 controllers.AppsController.listRegisteredApps
-GET      /apps/findById/:id                           controllers.AppsController.findById(id:String)
-#GET     /                                           controllers.Application.index
-POST    /addApp                                     controllers.AppsController.addApp
+GET      /findById/:id                              controllers.AppsController.findById(id:Long)
+GET     /removeApp/:id                              controllers.AppsController.removeApp(id:Long)
+POST    /addApp                                      controllers.AppsController.addApp
+POST    /updateApp                                   controllers.AppsController.updateApp
 #GET     /users/:id                                  controllers.Application.findUserById(id: Long)
 #PUT     /users/:id                                  controllers.Application.updateUser(id: Long)
 #DELETE  /users/:id                                  controllers.Application.deleteUser(id: Long)
 
+POST /addDeployment                                 controllers.DeployController.addDeployment
+POST /updateDeployment                                 controllers.DeployController.updateDeployment
+GET  /findDeploymentById/:id                                  controllers.DeployController.findDeploymentById(id:Long)
+GET  /searchDeploymentsByAppId/:appId               controllers.DeployController.searchDeploymentsByAppId(appId:Long)
+GET  /searchDeploymentsByUserId/:userId             controllers.DeployController.searchDeploymentsByUserId(userId:Long)
+GET  /searchDeploymentsByDate/:date                 controllers.DeployController.searchDeploymentsByDate(date:Long)
+GET  /getAllDeployments                             controllers.DeployController.getAllDeployments
 # Map static resources from the /public folder to the /assets URL path
 GET     /*file               controllers.Assets.at(path="/public", file)

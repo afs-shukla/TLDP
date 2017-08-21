@@ -46,9 +46,9 @@ class SvnDataScalaTestSpec extends PlaySpec with GuiceOneAppPerTest  with Before
       println("SIT Deployment:"+deploy1)
       println("UAT deployment:"+deploy2)
 
-      val svn1=Await.result(svnRepo.create(deploy1,"hellowolrd1.java","4445","SC Shukla",new Timestamp(new Date().getTime)),Duration.Inf)
-      val svn2=Await.result(svnRepo.create(deploy1,"hellowolrd2.java","4446","SC Shukla",new Timestamp(new Date().getTime)),Duration.Inf)
-      val svn3=Await.result(svnRepo.create(deploy1,"hellowolrd3.java","4447","SC Shukla",new Timestamp(new Date().getTime)),Duration.Inf)
+      val svn1=Await.result(svnRepo.create(deploy1,"hellowolrd1.java","4445","SC Shukla","10-08-2017"),Duration.Inf)
+      val svn2=Await.result(svnRepo.create(deploy1,"hellowolrd2.java","4446","SC Shukla","10-08-2017"),Duration.Inf)
+      val svn3=Await.result(svnRepo.create(deploy1,"hellowolrd3.java","4447","SC Shukla","10-08-2017"),Duration.Inf)
 
       val svndtls=Await.result(svnRepo.findSvnDetailsByDeplId(deploy1),Duration.Inf)
 

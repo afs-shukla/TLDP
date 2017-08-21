@@ -20,7 +20,11 @@
      <script src="lib/angular-resource.min.js"></script>
 
     <!-- Main Restaurant Module -->
-    <script src="src/restaurant.module.js"></script>
+ <!-- <script src="src/restaurant.module.js"></script> -->
+
+
+
+
 
     <!-- Common Module -->
     <script src="src/common/common.module.js"></script>
@@ -38,6 +42,8 @@
     // <script src="src/public/menu-category/menu-category.component.js"></script>
     // <script src="src/public/menu-items/menu-items.controller.js"></script>
     // <script src="src/public/menu-item/menu-item.component.js"></script> -->
+
+    
 
     <!-- deploy.component.js-->
      <script src="src/apps/apps.module.js"></script>
@@ -72,8 +78,12 @@
     <script src="src/admin/menu-item/menu-item-edit.controller.js"></script>
     <script src="src/admin/menu-item/menu-item-admin.component.js"></script>
 
+
+    <script src="src/public/main.module.js"></script>
+    <script src="src/public/main.routes.js"></script>
+
 </head>
-<body ng-app="restaurant" ng-strict-di>
+<body ng-app="main" ng-strict-di>
    <div class="container-fluid">
     <header >
        <!--<nav class="navbar navbar-inverse container-fluid navbar-fixed-top">-->
@@ -107,12 +117,12 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="Home.html">
-                    <span class="glyphicon glyphicon-home"></span> 
-                    Home</a></li>
-                    <li><a href="#">
-                    <span class="glyphicon glyphicon-king"></span>  
-                    About</a></li>
+                    <li class="active"><a ui-sref="main.home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-king"></span> About</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-tasks"></span>User Management</a></li>
+                    <li><a ui-sref="apps.home"> <span class="glyphicon glyphicon-tasks"></span>Apps Management</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-tasks"></span> Demployments</a></li>
+                    <li><a ui-sref="dashboard.home"><span class="glyphicon glyphicon-phone"></span>Dashboard</a></li>
  
                 </ul>
            

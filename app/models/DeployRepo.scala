@@ -19,7 +19,7 @@ import scala.concurrent.{Await, Future}
 
 case class Deploy(id:Long,depNumber:String, userId:Long, appId: Long, depDate: Timestamp
                        , depEnvironment:String, depStatus:String, depRemarks:String)
-class DeployRepo @Inject()(val userRepo:UsersRepo)(val appRepo:AppsRepo)(protected val dbConfigProvider: DatabaseConfigProvider) {
+class  DeployRepo @Inject()(val userRepo:UsersRepo)(val appRepo:AppsRepo)(protected val dbConfigProvider: DatabaseConfigProvider) {
 
   val dbConfig = dbConfigProvider.get[JdbcProfile]
   val db = dbConfig.db
@@ -46,14 +46,16 @@ class DeployRepo @Inject()(val userRepo:UsersRepo)(val appRepo:AppsRepo)(protect
 
 
 
-/*  def getUserDetails(id:Long):Future[Option[UsersDetail]]={
-    val deploy= Await.result(findById(id),Duration.Inf)
-   val action = deploy match {
-      case Some(s) => userRepo.findById(s.userId)
-      case None => Future[Option[None]]
-    }
+  def updateDeployment(deploy:Deploy)={
+    val action= deployments.filter (_.id === deploy.id ).map (dep=>
+      (dep.depNumber, dep.userId,dep.appId, dep.depDate,
+        dep.depEnvironment, dep.depStatus, dep.depRemarks)).
+      update(deploy.depNumber,  deploy.userId, deploy.appId, deploy.depDate,
+        deploy.depEnvironment, deploy.depStatus, deploy.depRemarks)
 
-  }*/
+    db.run(action)
+
+  }
 
   def all: Future[List[Deploy]] =
     db.run(deployments.to[List].result)

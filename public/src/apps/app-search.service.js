@@ -10,8 +10,8 @@ function AppsService($http, ApiPath) {
   var appsService = this;
 
   appsService.findApps = function (searchparams) {
-    console.log("AppsService:"+searchparams.appid)
-    return $http.get(ApiPath + '/getAllApps',
+    console.log("AppsService:"+searchparams)
+    return $http.get(ApiPath + '/findApps',
     	{
     		params:{appid:searchparams.appid, appname:searchparams.appname, desc:searchparams.desc }
     	})
@@ -52,7 +52,7 @@ function AppsService($http, ApiPath) {
     	})
   };
 
-}
+
 
 
 

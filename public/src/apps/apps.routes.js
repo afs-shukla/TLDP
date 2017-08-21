@@ -13,12 +13,12 @@ function routeConfig ($stateProvider) {
   $stateProvider
     .state('apps', {
       abstract: true,
-      templateUrl: 'src/dashboard/apps.html'
+      templateUrl: 'src/apps/apps.html'
     })
-    // .state('apps.dashboardhome', {
-    //   url: '/',
-    //   templateUrl: 'src/dashboard/apps.dashboard.home.html'
-    // })
+     .state('apps.home', {
+       url: '/appshome',
+       templateUrl: '<app-search></app-search>'
+     })
    ;
 }
 })();

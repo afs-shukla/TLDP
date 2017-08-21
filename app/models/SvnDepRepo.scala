@@ -17,7 +17,7 @@ import scala.concurrent.{Await, Future}
   */
 
 
-case class SvnDetail(id:Long, depId:Long, fileNames: String, version:String, changedby:String,time:Timestamp)
+case class SvnDetail(id:Long, depId:Long, fileNames: String, version:String, changedby:String,time:String)
 
 class SvnDepRepo  @Inject()(val depRepo:DeployRepo) (protected val dbConfigProvider: DatabaseConfigProvider) {
 
@@ -40,7 +40,7 @@ class SvnDepRepo  @Inject()(val depRepo:DeployRepo) (protected val dbConfigProvi
   def all: Future[List[SvnDetail]] =
     db.run(SvnDetails.to[List].result)
 
-  def create(depId:Long, fileNames: String, version:String, changedby:String,time:Timestamp):Future[Long]={
+  def create(depId:Long, fileNames: String, version:String, changedby:String,time:String):Future[Long]={
     val dep = SvnDetail(0,depId, fileNames,version,changedby,time)
     db.run(SvnDetails returning SvnDetails.map(_.id) += dep)
   }
@@ -50,7 +50,7 @@ class SvnDepRepo  @Inject()(val depRepo:DeployRepo) (protected val dbConfigProvi
     def fileNames = column[String]("FILE_NAMES")
     def version = column[String]("VERSION")
     def changedby = column[String]("CHANGED_BY")
-    def time = column[Timestamp]("CHANGE_DATE",SqlType("timestamp not null default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP\""))
+    def time = column[String]("CHANGE_DATE")
 
 
     def * = (id, depId,fileNames, version, changedby,time) <>(SvnDetail.tupled, SvnDetail.unapply)

@@ -49,7 +49,7 @@ class SonarScalaTestSpecs extends PlaySpec with GuiceOneAppPerTest  with BeforeA
 
       // logger.info("Svn Details 1" + Await.result(svnRepo.create(deploy1, "hellowolrd.java", "10.20.34", "4094"), Duration.Inf))
       // logger.info("Svn Details 2" + Await.result(svnRepo.create(deploy2, "FindUser.java", "10.20.35", "4095"), Duration.Inf))
-      val sonar1 = Await.result(sonarRepo.create(deploy1, "SONAR-0320", 1, 4, 10, new java.sql.Timestamp(new Date().getTime)), Duration.Inf)
+      val sonar1 = Await.result(sonarRepo.create(deploy1, "SONAR-0320", 1, 4, 10, "10-05-2015"), Duration.Inf)
       /*      val jira2=Await.result(sonarRepo.create(deploy1, "SONAR-0321", "Creatign GID", "Completed","10.44.22"), Duration.Inf)
       val jira3=Await.result(sonarRepo.create(deploy1, "SONAR-0322", "Correcting SSI Details", "Completed","10.44.22"), Duration.Inf)
       val jira4=Await.result(sonarRepo.create(deploy1, "SONAR-0323", "Adding new account number for me", "Completed","10.44.22"), Duration.Inf)*/

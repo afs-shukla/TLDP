@@ -12,7 +12,7 @@ import scala.concurrent.Future
 /**
   * Created by afssh on 14-08-2017.
   */
-case class SonarDetail(id:Long,depId:Long,sonarId:String,blockers:Int,criticals:Int,majors:Int,time:Timestamp)
+case class SonarDetail(id:Long,depId:Long,sonarId:String,blockers:Int,criticals:Int,majors:Int,time:String)
 class SonarRepo @Inject()(val depRepo:DeployRepo)(val userRepo:UsersRepo)(val appRepo:AppsRepo)(protected val dbConfigProvider: DatabaseConfigProvider) {
 
   val dbConfig = dbConfigProvider.get[JdbcProfile]
@@ -34,7 +34,7 @@ class SonarRepo @Inject()(val depRepo:DeployRepo)(val userRepo:UsersRepo)(val ap
   def all: Future[List[SonarDetail]] =
     db.run(sonars.to[List].result)
 
-  def create(depId:Long,sonarId:String,blockers:Int,criticals:Int,majors:Int,time:Timestamp):Future[Long]={
+  def create(depId:Long,sonarId:String,blockers:Int,criticals:Int,majors:Int,time:String):Future[Long]={
     val dep = SonarDetail(0,depId, sonarId,blockers,criticals,majors,time)
     db.run(sonars returning sonars.map(_.id) += dep)
   }
@@ -46,7 +46,7 @@ class SonarRepo @Inject()(val depRepo:DeployRepo)(val userRepo:UsersRepo)(val ap
     def blockers = column[Int]("BLOCKERS")
     def criticals = column[Int]("CRITICALS")
     def majors = column[Int]("MAJORS")
-    def time=column[Timestamp]("SONAR_DATE",SqlType("timestamp not null default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP\""))
+    def time=column[String]("SONAR_DATE")
 
 
     def * = (id, depId,sonarId, blockers, criticals,majors,time) <>(SonarDetail.tupled, SonarDetail.unapply)

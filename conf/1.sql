@@ -63,7 +63,7 @@ CREATE TABLE T_DEPLOY (
    VERSION VARCHAR(100),
    CHANGED_BY VARCHAR(20),
    DEP_ID integer,
-   CHANGE_DATE date,
+   CHANGE_DATE VARCHAR(100),
    FOREIGN KEY (DEP_ID) REFERENCES T_DEPLOY (ID)
   );
 
@@ -84,7 +84,7 @@ CREATE TABLE T_DEPLOY (
          CRITICALS integer,
          MAJORS integer,
          DEP_ID integer,
-         SONAR_DATE date,
+         SONAR_DATE varchar(100),
          FOREIGN KEY (DEP_ID) REFERENCES T_DEPLOY (ID)
         );
 

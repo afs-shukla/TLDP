@@ -1,5 +1,6 @@
 package models
 
+import com.typesafe.scalalogging.LazyLogging
 import models.{TargetApps, AppsRepo}
 import org.scalatest.BeforeAndAfterEach
 import org.scalatestplus.play._
@@ -11,7 +12,7 @@ import scala.concurrent.Await
 import scala.concurrent.duration.Duration
 
 
-class AppScalaTestSpec extends PlaySpec with GuiceOneAppPerTest  with BeforeAndAfterEach {
+class AppScalaTestSpec extends PlaySpec with GuiceOneAppPerTest  with BeforeAndAfterEach with LazyLogging {
 
   val projectRepo = Injector.inject[AppsRepo]
 
@@ -20,12 +21,12 @@ class AppScalaTestSpec extends PlaySpec with GuiceOneAppPerTest  with BeforeAndA
   "An item " should {
 
     "be inserted during the first test case" in  {
-        val action = projectRepo.create( "A","TestApp","TestDesc","Apptype","tomcat","ansible","Satish","GMOT","Magnu","http://localhost:3333/apprep","/home/abcd/playbooks/app123")
-          .flatMap(_ => projectRepo.all)
+      val action = projectRepo.create( "A","TestApp","TestDesc","Apptype","tomcat","ansible","Satish","GMOT","Magnu","http://localhost:3333/apprep","/home/abcd/playbooks/app123")
+        .flatMap(_ => projectRepo.all)
 
-        val result = Await.result(action, Duration.Inf)
+      val result = Await.result(action, Duration.Inf)
 
-        result mustBe List(TargetApps(1, "A","TestApp","TestDesc","Apptype","tomcat","ansible","Satish","GMOT","Magnu","http://localhost:3333/apprep","/home/abcd/playbooks/app123"))
+      result mustBe List(TargetApps(1, "A","TestApp","TestDesc","Apptype","tomcat","ansible","Satish","GMOT","Magnu","http://localhost:3333/apprep","/home/abcd/playbooks/app123"))
     }
 
     "and not exist in the second test case" in  {
@@ -116,6 +117,38 @@ class AppScalaTestSpec extends PlaySpec with GuiceOneAppPerTest  with BeforeAndA
       //result2 mustBe 1
 
     }
+    "removed apps " in  {
+      val action = projectRepo.create( "A","TestApp","TestDesc","Apptype","tomcat","ansible","Satish","GMOT","Magnu","http://localhost:3333/apprep","/home/abcd/playbooks/app123")
+        .flatMap(_ => projectRepo.all)
+
+      val result = Await.result(action, Duration.Inf)
+
+      result mustBe List(TargetApps(1, "A","TestApp","TestDesc","Apptype","tomcat","ansible","Satish","GMOT","Magnu","http://localhost:3333/apprep","/home/abcd/playbooks/app123"))
+
+      val action2=projectRepo.delete(1)
+
+      val result2 = Await.result(action2, Duration.Inf)
+
+      logger.info("Removed AppDetails:"+result2)
+
+    }
+
+    "find by id apps " in  {
+      val action = projectRepo.create( "A","TestApp","TestDesc","Apptype","tomcat","ansible","Satish","GMOT","Magnu","http://localhost:3333/apprep","/home/abcd/playbooks/app123")
+        .flatMap(_ => projectRepo.all)
+
+      val result = Await.result(action, Duration.Inf)
+
+      result mustBe List(TargetApps(1, "A","TestApp","TestDesc","Apptype","tomcat","ansible","Satish","GMOT","Magnu","http://localhost:3333/apprep","/home/abcd/playbooks/app123"))
+
+      val action2=projectRepo.findById(1)
+
+      val result2 = Await.result(action2, Duration.Inf)
+
+      logger.info("Applciation found for id :1"+result2)
+
+    }
+
 
 
 

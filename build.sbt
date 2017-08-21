@@ -28,7 +28,10 @@ libraryDependencies ++= Seq(
   guice
 )
 
+
+/*libraryDependencies += "com.typesafe.slick" % "slick-extensions_2.11" % "3.0.0"*/
 resolvers += "Sonatype snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/"
+resolvers += "Typesafe Releases" at "http://repo.typesafe.com/typesafe/maven-releases/"
 sourceDirectories in (Compile, TwirlKeys.compileTemplates) :=
   (unmanagedSourceDirectories in Compile).value
 

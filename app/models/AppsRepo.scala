@@ -3,6 +3,7 @@ package models
 import javax.inject.Inject
 
 
+import com.typesafe.scalalogging.LazyLogging
 import play.api.db.slick.DatabaseConfigProvider
 import slick.jdbc.JdbcProfile
 
@@ -12,10 +13,11 @@ import scala.concurrent.Future
 /**
   * Created by afssh on 09-08-2017.
   */
-
+case class TargetAppsVo(appId:String, appName: String, appDesc:String, appType:String, appContainer:String, appDepType:String,
+                        appProjManager:String, appProcessName:String, appTeam:String, appRepository:String, appPlaybook:String)
 case class TargetApps(id:Long, appId:String, appName: String, appDesc:String, appType:String, appContainer:String, appDepType:String,
                       appProjManager:String, appProcessName:String, appTeam:String, appRepository:String, appPlaybook:String)
-class AppsRepo @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) {
+class AppsRepo @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends LazyLogging{
 
   val dbConfig = dbConfigProvider.get[JdbcProfile]
   val db = dbConfig.db
@@ -54,12 +56,13 @@ class AppsRepo @Inject() (protected val dbConfigProvider: DatabaseConfigProvider
   }
 
   def appSearch(appId:Option[String],appName:Option[String],appDesc:Option[String]):Future[List[TargetApps]] ={
+    logger.info("Appid:"+appId+ "   appName:"+appName+"  appDesc:"+appDesc)
     val action =  for {
        applist <- Apps.filter( a =>
                              appId.map (id =>
-                             a.appId like  s"%${id}%").getOrElse(slick.lifted.LiteralColumn(true)) &&
+                             a.appId like  s"%${id}%").getOrElse(slick.lifted.LiteralColumn(true)) ||
                              appName.map ( name =>
-                             a.appName like s"%${name}%").getOrElse(slick.lifted.LiteralColumn(true)) &&
+                             a.appName like s"%${name}%").getOrElse(slick.lifted.LiteralColumn(true)) ||
                              appDesc.map ( desc=>
                              a.appDesc like "%desc%").getOrElse(slick.lifted.LiteralColumn(true))
       ).to[List]
@@ -97,6 +100,7 @@ def all: Future[List[TargetApps]] =
 def create(appId: String,appName:String,appDesc:String,appType:String,appContainer:String,appDepType:String,
            appProjManager:String,appProcessName:String,appTeam:String,appRepository:String,appPlaybook:String): Future[Long] = {
   val project = TargetApps(0, appId,appName,appDesc,appType,appContainer,appDepType,appProjManager,appProcessName,appTeam,appRepository,appPlaybook)
+  logger.info("Adding application :"+project)
   db.run(Apps returning Apps.map(_.id) += project)
 }
 

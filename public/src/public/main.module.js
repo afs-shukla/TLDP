@@ -4,7 +4,7 @@
 /**
  * Restaurant module that includes the public module as a dependency
  */
-angular.module('restaurant', ['admin','apps','dashboard','ngResource'])
+angular.module('main', ['admin','apps','dashboard','ngResource'])
 .config(config);
 
 config.$inject = ['$urlRouterProvider'];

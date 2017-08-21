@@ -16,7 +16,7 @@ function routeConfig ($stateProvider) {
       templateUrl: 'src/dashboard/dashboard.html'
     })
     .state('dashboard.home', {
-      url: '/',
+      url: '/dashboard.home',
       templateUrl: 'src/dashboard/dashboard.home.html'
     })
    ;

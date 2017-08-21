@@ -3,7 +3,7 @@
 
 angular.module('apps')
 .component('appSearch', {
-templateUrl: 'src/apps/app-search.view.html',
+templateUrl: 'src/apps/apps.search.html',
   // bindings: {
   //   appdetails: '<'
   // }
