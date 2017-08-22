@@ -20,14 +20,19 @@
      <script src="lib/angular-resource.min.js"></script>
 
     <!-- Main Restaurant Module -->
- <!-- <script src="src/restaurant.module.js"></script> -->
+ <script src="src/public/home.module.js"></script>
+ <script src="src/common/common.module.js"></script>
+ <script src="src/apps/apps.module.js"></script>
+ 
+ <script src="src/dashboard/dashboard.module.js"></script>
+ <script src="src/admin/admin.module.js"></script>
 
 
 
 
 
     <!-- Common Module -->
-    <script src="src/common/common.module.js"></script>
+    
     <script src="src/common/loading/loading.component.js"></script>
     <script src="src/common/loading/loading.interceptor.js"></script>
     <script src="src/common/menu.service.js"></script>
@@ -47,7 +52,7 @@
 
     <!-- deploy.component.js-->
      <script src="src/apps/apps.module.js"></script>
-    <script src="src/apps/apps.routes.js"></script>
+    
     <script src="src/apps/app.component.js"></script>
     <script src="src/apps/app-search.component.js"></script>
     <script src="src/apps/app-searchlist.component.js"></script>
@@ -56,8 +61,8 @@
     <script src="src/apps/services/app-service.js"></script>
 
     <!-- Dashboard-->
-    <script src="src/dashboard/dashboard.module.js"></script>
-    <script src="src/dashboard/dashboard.routes.js"></script>
+   
+    
 
     
     
@@ -65,8 +70,8 @@
     
 
     <!-- ADMIN SITE -->
-    <script src="src/admin/admin.module.js"></script>
-    <script src="src/admin/admin.routes.js"></script>
+    
+    
     <script src="src/admin/admin-auth/admin-auth.controller.js"></script>
     <script src="src/admin/services/login.service.js"></script>
     <script src="src/admin/services/current-user.service.js"></script>
@@ -79,8 +84,7 @@
     <script src="src/admin/menu-item/menu-item-admin.component.js"></script>
 
 
-    <script src="src/public/main.module.js"></script>
-    <script src="src/public/main.routes.js"></script>
+    
 
 </head>
 <body ng-app="main" ng-strict-di>
@@ -117,7 +121,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a ui-sref="main.home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                    <li class="active"><a ui-sref="home.main"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                     <li><a href="#"><span class="glyphicon glyphicon-king"></span> About</a></li>
                     <li><a href="#"><span class="glyphicon glyphicon-tasks"></span>User Management</a></li>
                     <li><a ui-sref="apps.home"> <span class="glyphicon glyphicon-tasks"></span>Apps Management</a></li>
