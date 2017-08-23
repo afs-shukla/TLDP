@@ -1,0 +1,89 @@
+    
+    <link rel="stylesheet" href="css/deploy.css"> 
+    <div class="content">
+ 	<div class="panel panel-primary dashboard-panel">
+    	<!-- <div class="container container-fluid" > -->
+ 	<!-- <div class="panel-heading">Application Details</div> -->
+ 	<div class="panel-body">
+		<div class="row">
+		  <form name="appform" class="form-vertical">
+			<div id="column1" class="col-md-6">
+		 	  
+			  <div class="form-group">
+			    <label  for ="appId" class="control-label col-sm-8" >App Id:</label> 
+			    <input type="text" id="appId" class="form-control" ng-model="$ctrl.app.appId" />
+			    
+			  </div>
+			  <div class="form-group">
+			    <label  for ="appName" class="control-label col-sm-8">App Name:</label>
+			    <input type="text" id="appName" class="form-control" ng-model="$ctrl.app.appName" />
+			  </div>
+			   <div class="form-group">
+			    <label  for="appType" class="control-label col-sm-8">App Type:</label>
+			    <input type="text" id="appType" class="form-control" ng-model="$ctrl.app.appType" /> 
+			  </div>
+			  <div class="form-group">
+			    <label  for="appContainer" class="control-label col-sm-8">App Container:</label>
+			    <input type="text" id="appContainer" class="form-control" ng-model="$ctrl.app.appContainer" /> 
+			  </div>
+			  
+			
+		</div>
+
+		<div  id="column2" class="col-md-6">
+		   
+			  <div class="form-group">
+			    <label for="appDepType" class="control-label col-sm-8">Deployment Type:</label>
+			    <input type="text" id="appDepType" class="form-control" ng-model="$ctrl.app.appDepType" /> 
+			  </div>
+			  <div class="form-group">
+			    <label for="appProjManager" class="control-label col-sm-8">Project Manager:</label>
+			    <input type="text" id="appProjManager" class="form-control" 
+			     ng-model="$ctrl.app.appProjManager" />
+			  </div>
+			  <div class="form-group">
+			    <label  for="appProcessName" class="control-label col-sm-8">Process Name:</label>
+			    <input type="text" id="appProcessName" class="form-control" ng-model="$ctrl.app.appProcessName" /> 
+			  </div>
+			  <div class="form-group">
+			    <label for="appTeam" class="control-label col-sm-8">Team Name: </label>
+			    <input type="text" id="appTeam" class="form-control" ng-model="$ctrl.app.appTeam" />
+			  </div>
+			
+		</div>
+
+		<div id="longfields" class="col-md-12">
+		
+		 	<div class="form-group">
+             	<label  for="app.appDesc" class="control-label col-sm-8">App Description: </label> 
+             	<input type="text" id="app.appDesc" class="form-control" ng-model="$ctrl.app.appDesc" />
+		 	</div>
+		 	<div class="form-group">
+ 				<label for="appRepository" class="control-label col-sm-8">App Repository:</label>
+ 				<input type="text" id="appRepository" class="form-control" ng-model="$ctrl.app.appRepository" />
+		 	</div>
+		 	<div class="form-group">
+		 		<label  for="appPlaybook" class="control-label col-sm-8">Playbook Path:</label>
+		 		<input type="text" id="appPlaybook" class="form-control" 
+		 		ng-model="$ctrl.app.appPlaybook" />
+		 
+		 	</div>
+		 </div>
+
+	        <div  class="pull-right button-panel">
+	           <input type="submit" class="btn btn-primary" ng-click="$ctrl.addNewApp(app)"/>	            
+	        </div>
+    	
+		 </form>
+
+		</div>
+		</div>
+		 <!-- <div class="panel-footer ">
+	        <div class="pull-right">
+	            <a href="#" class="btn btn-primary">Learn More</a>
+	            <a href="#" class="btn btn-default">Go Back</a>
+	        </div>
+    	</div> -->
+	<!-- </div> -->
+   </div>
+</div>

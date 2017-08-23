@@ -20,9 +20,15 @@ function routeConfig ($stateProvider) {
     })
      .state('apps.home', {
        url: '/appshome',
-       templateUrl: '<app-search></app-search>'
+       templateUrl: 'src/apps/apps.home.html'
      })
-   ;
+     .state('apps.new', {
+       url: '/apps-new',
+       templateUrl: 'src/apps/apps.new-form.html',
+       controller: 'AddingNewAppController',
+        controllerAs: '$ctrl'
+     })
+     ;
 }
 
 })();

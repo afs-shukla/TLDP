@@ -39,10 +39,9 @@ function AppsService($http, ApiPath) {
   };
 
    appsService.addApp = function (appdata) {
-    return $http.get(ApiPath + '/removeAppById',
-    	{
-    		params:{appid:appid}
-    	})
+    console.log("In AppService addApp ",appdata)
+    return $http.post(ApiPath + '/addApp', appdata)
+    	
   };
 
   appsService.Updatepp = function (appdata) {
