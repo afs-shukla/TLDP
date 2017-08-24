@@ -73,7 +73,9 @@
 	        <div  class="pull-right button-panel">
 	           <input type="submit" class="btn btn-primary" ng-click="$ctrl.addNewApp(app)"/>	            
 	        </div>
-    	
+    	    <div  id:"message" ng-if="$ctrl.message" class="alert alert-success">
+                  <strong>{{$ctrl.message}} </strong>
+    	    </div>
 		 </form>
 
 		</div>

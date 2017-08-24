@@ -25,9 +25,10 @@ libraryDependencies ++= Seq(
   "com.typesafe.scala-logging" %% "scala-logging" % "3.7.2",
 
     specs2 % Test,
-  guice
+  guice,
+  filters
 )
-
+//libraryDependencies += filters
 
 /*libraryDependencies += "com.typesafe.slick" % "slick-extensions_2.11" % "3.0.0"*/
 resolvers += "Sonatype snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/"

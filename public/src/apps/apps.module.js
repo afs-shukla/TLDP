@@ -3,7 +3,7 @@
 /**
  * app module for magaging the apps 
  */
-var appmodule=angular.module('apps', ['ui.router', 'common','smart-table'])
+var appmodule=angular.module('apps', ['ngDialog','ui.router', 'common','smart-table'])
 
 appmodule.config(routeConfig);
 
