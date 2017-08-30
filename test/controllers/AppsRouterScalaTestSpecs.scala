@@ -14,11 +14,11 @@ import scala.concurrent.duration.Duration
 /**
   * Created by afssh on 15-08-2017.
   */
-class AppsRouterScalaTestSpecs  extends PlaySpec with GuiceOneAppPerTest  with BeforeAndAfterEach  {
-  val appRepo = Injector.inject[AppsRepo]
+  class AppsRouterScalaTestSpecs  extends PlaySpec with GuiceOneAppPerTest  with BeforeAndAfterEach  {
+    val appRepo = Injector.inject[AppsRepo]
 
 
-   "Controller tests- AppsController" should {
+    "Controller tests- AppsController" should {
 
      "adds app" in {
        val appdetail: String =

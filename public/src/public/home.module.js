@@ -4,7 +4,7 @@
 /**
  * Restaurant module that includes the public module as a dependency
  */
-var mainapp=angular.module('main', ['ui.router','common','admin','apps','dashboard','ngResource']);
+var mainapp=angular.module('main', ['ui.router','common','admin','apps','dashboard','deployment','users','ngResource','ngMaterial']);
 mainapp.config(['$stateProvider','$urlRouterProvider', function ($stateProvider,$urlRouterProvider){
 
   $stateProvider

@@ -24,5 +24,15 @@ GET  /searchDeploymentsByAppId/:appId               controllers.DeployController
 GET  /searchDeploymentsByUserId/:userId             controllers.DeployController.searchDeploymentsByUserId(userId:Long)
 GET  /searchDeploymentsByDate/:date                 controllers.DeployController.searchDeploymentsByDate(date:Long)
 GET  /getAllDeployments                             controllers.DeployController.getAllDeployments
+GET /searchDeployments/:depNumber/:appId/:userId/:depDate/:depStatus/:fixVersion                            controllers.DeployController.searchDeployments(depNumber:String,appId:Long,userId:Long,depDate:String,depStatus:String,fixVersion:String)
+
+POST /addUser                                 controllers.UsersController.addUser
+
+GET /findSvnDetailsByDepId/:depid                   controllers.ExtraInfoController.findSvnDetailsByDepId(depid:Long)
+
+GET /findSonarDetailsByDepId/:depid                     controllers.ExtraInfoController.findSonarDetailsByDepId(depid:Long)
+
+GET /findJiraDetailsByDepId/:depid                  controllers.ExtraInfoController.findJiraDetailsByDepId(depid:Long)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /*file               controllers.Assets.at(path="/public", file)

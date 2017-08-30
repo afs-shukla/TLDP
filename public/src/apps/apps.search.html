@@ -10,60 +10,53 @@
             <div id="app-search" class="row">
             <div id="app-search" class="col-md-12">
                     <!-- <app-search></app-search> -->
-
+            <div class="panel panel-default">
+               <div class="panel-body">
+               <form class="form-inline">
+            <div class="form-group ">
+             
+             <div class="col-md-4">
+                <input type="text" class="form-control" id="appid" ng-model="$ctrl.searchparams.appid" placeholder="Application Id">
+              </div>
               
-   <!-- <link rel="stylesheet" href="css/light-bootstrap-dashboard.css"> -->
-    		<div id="app-search" class="content">
-	 			<div class="panel panel-primary dashboard-panel">
-	    	
-	 		<!-- <div class="panel-heading">Application Search</div> --> 
-	 		<!-- <div class="pull-right">Application Details</div> -->
-	 				<div class="panel-body fixed-panel">
-	
-				 		 <table class="table table-condensed">
-						   <tbody>
-						      <tr>
-						        <td>App Id:</td>
-						        <td><input type="text" id="appid" class="form-control" ng-model="$ctrl.searchparams.appid" /></td>
-						        <td>App Name:</td>
-						        <td><input type="text" id="appname" class="form-control" ng-model="$ctrl.searchparams.appname" /></td>
-						        <td>description:</td>
-						        <td><input type="text" id="appname" class="form-control" ng-model="$ctrl.searchparams.description" /></td>
-						        <td><button type="button"  class="btn btn-primary" ng-click="$ctrl.searchapps(searchparams)"> Search </button></td>
-                    <td><button type="button"  class="btn btn-primary" ng-click="$ctrl.addnew()"> Add New </button></td>
-						      </tr>
-						   
-						    </tbody>
-						  </table>
+            </div>
+            <div class="form-group">
+            <div class="col-md-4">
+              <input type="text" class="form-control" id="appname" 
+               ng-model="$ctrl.searchparams.appname" placeholder="Application Name" > 
+            </div>
+            </div>
+            <div class="form-group">
+            <div class="col-md-4">
+              <input type="text" class="form-control" id="description" 
+              ng-model="$ctrl.searchparams.description" placeholder="App Description" >
+            </div>
+            </div>
+           
+            <button type="button"  class="btn btn-primary" ng-click="$ctrl.searchapps(searchparams)"> Search Apps
+            </button>
+            <button type="button"  class="btn btn-primary" ng-click="$ctrl.addnew()"> Add New 
+            </button>
+        </form>
+        </div>
+        </div> 
 
-	   		 		</div>
+               
 
-	 			</div>
-	 	
- 			</div>
+
+
 
             </div>
             </div>
             <div id="app-details" class="row">
-               <!--  <div id="app-search" class="col-md-5">
-                    <app-search></app-search>
-                </div> -->
+            
                 <div id="app-list" class="col-md-12 ">
-                    <search-list></search-list>
+                    <search-list app-details="$ctrl.appsList"></search-list>
                 </div>
 
              </div>
 
-            <!-- <div id="dep-details" class="row">
-              <div id="dep-details" class="col-md-5" >
-              
-              <app-details></app-details>
-              </div>
-              <div id="dep-statics" class="col-md-12">
-                 <app-extrainfo></app-extrainfo>
-              </div>
-    
-          </div> -->
+         
 </div>
 
 

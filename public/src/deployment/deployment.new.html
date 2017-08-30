@@ -1,0 +1,117 @@
+<div class="content">
+    <div  class="container-fluid deploy-container"> 
+
+       <div class="row ">
+           <div class="col-xs-12 col-md-6 col-lg-6 left-box"> App Detials
+		     <div class="panel panel-default">
+		         <div class="panel-body">
+		         <form class="form-inline">
+		            <div class="form-group ">
+		             
+		             <div class="col-md-4">
+		                <input type="text" class="form-control" id="appid" ng-model="$ctrl.searchparams.appid" placeholder="Application Id">
+		              </div>
+		            </div>
+		            <div class="form-group">
+		            <div class="col-md-4">
+		              <input type="text" class="form-control" id="appname" 
+		               ng-model="$ctrl.searchparams.appname" placeholder="Application Name" > 
+		            </div>
+		            </div>
+		            <div class="form-group">
+		            <div class="col-md-4">
+		              <input type="text" class="form-control" id="description" 
+		              ng-model="$ctrl.searchparams.description" placeholder="App Description" >
+		            </div>
+		            </div>
+		           
+		            <button type="button"  class="btn btn-primary" ng-click="$ctrl.searchapps(searchparams)"> Search Apps
+		            </button>
+		            <button type="button"  class="btn btn-primary" ng-click="$ctrl.addnew()"> Add New 
+		            </button>
+		        </form>
+		        </div>
+        	</div> 
+
+           </div>
+           <div class="col-xs-12 col-md-6 col-lg-12  left-box"> Capture Deploymet
+
+           		<div class="panel panel-primary dashboard-panel">
+    
+					 	<div class="panel-body">
+						 <!-- <div class="row"> -->
+						  <form name="depform" class="form-vertical">
+							<div id="column1" class="col-md-3">
+							 	  
+								  <div class="form-group">
+								     <input type="text" id="depNumber" class="form-control" ng-model="$dctrl.dep.depNumber" placeholder="Deployment Number" />
+								    
+								  </div>
+								  <div class="form-group">
+								   
+								    <input type="number" id="appId" class="form-control" number-converter ng-model="$dctrl.dep.appId"  placeholder="Application Id"/>
+								  </div>
+								   <div class="form-group">
+								 
+								    <input type="number" id="userId" class="form-control" number-converter ng-model="$dctrl.dep.userId" placeholder="User Id" /> 
+								  </div>
+								  <div class="form-group">
+								    
+								    <input type="text" id="depDate" class="form-control" ng-model="$dctrl.dep.depDate" 
+								    placeholder="Deployment Date"/> 
+								  </div>
+								  
+								
+							</div>
+
+							<div  id="column2" class="col-md-3">
+							   
+								  <div class="form-group">
+								   
+								    <input type="text" id="depEnvironment" class="form-control" ng-model="$dctrl.dep.depEnvironment" placeholder="Deployment Environment"/> 
+								  </div>
+								  <div class="form-group">
+								    
+								    <input type="text" id="depStatus" class="form-control" 
+								     ng-model="$dctrl.dep.depStatus" placeholder="Deployent Status" />
+								  </div>
+								  <div class="form-group">
+								    
+								    <input type="text" id="depRemarks" class="form-control" ng-model="$dctrl.dep.depRemarks" 
+								    placeholder="Remarks"/> 
+								  </div>
+								  <div class="form-group">
+					             	
+					             	<input type="text" id="fixVersion" class="form-control" ng-model="$dctrl.dep.fixVersion"
+					             	placeholder="Fix Version " />
+							 	  </div>
+											
+						        <div  class="pull-right button-panel">
+						           <input type="submit" class="btn btn-primary" ng-click="$dctrl.addDeployment(dep)"/>	            
+						        </div>
+						        <div  class="pull-right button-panel">
+						           <button type="button" class="btn btn-primary" ng-click="$dctrl.findExtraInfo(dep)" >Fetch Extra Info</button>	            
+						        </div>
+					    	 </div>   
+							 </form>
+							 	<div  id="column2" class="col-xs-6 col-md-6 col-lg-6">
+							 		<app-extrainfo jira-details="$dctrl.jiraDetails"></app-extrainfo>
+							 	</div>	
+							<!-- </div> -->
+						</div>
+			
+			   </div>
+           </div>
+       </div>
+
+       <div class ="row">
+           <div class="col-xs-12 col-md-12 col-lg-12  left-box">
+
+           </div>
+           
+       </div>
+    </div>
+</div>
+           
+
+ 

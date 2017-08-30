@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="css/ngDialog.min.css">
     <link rel="stylesheet" href="css/ngDialog-theme-default.min.css">
     <link rel="stylesheet" href="css/ngDialog-theme-plain.min.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="css/angular-material.min.css">
+
+   
    
 
           <!-- Libs -->
@@ -26,6 +30,14 @@
      <script src="lib/smart-table.min.js"></script>
      <script src="lib/angular-resource.min.js"></script>
       <script src="lib/ngDialog.min.js"></script>
+      <script src="lib/moment.min.js"></script>
+      <script src="lib/bootstrap-datepicker.min.js"></script>
+
+      <script src="lib/angular-animate.min.js"></script>
+      <script src="lib/angular-aria.min.js"></script>
+      <script src="lib/angular-material.min.js"></script>
+      <script src="lib/angular-messages.min.js"></script>
+
 
     <!-- Main Restaurant Module -->
  <script src="src/public/home.module.js"></script>
@@ -68,11 +80,33 @@
     <script src="src/apps/app-details.modal.js"></script>
     <script src="src/apps/services/app-service.js"></script>
     <script src="src/apps/adding-newapp.controller.js"></script>
+    <script src="src/apps/app-view.component.js"></script>
+     <script src="src/apps/apps-dialog.view.controller.js"></script>
+     <script scr="src/apps/search.modal-view.controller.js"></script>
+
+    
+    
+
 
     <!-- Dashboard-->
    
     
+   <!-- Dployment -->
+    <script src="src/deployment/deployment.module.js"></script>
+    <script src="src/deployment/deployment.controller.js"></script>
+    <script src="src/deployment/deployment.service.js"></script>
+    <script src="src/deployment/extra-info.service.js"></script>
 
+
+   <!-- Users -->
+    <script src="src/users/users.module.js"></script>
+    <script src="src/users/users.controller.js"></script>
+    <script src="src/users/users.service.js"></script>
+    
+   
+    
+    
+   
     
     
 
@@ -131,11 +165,11 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active"><a ui-sref="home.main"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-king"></span> About</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-tasks"></span>User Management</a></li>
+                    <li><a ui-sref="users.new"><span class="glyphicon glyphicon-king"></span> About</a></li>
+                    <li><a ui-sref="users.new"><span class="glyphicon glyphicon-tasks"></span>User Management</a></li>
                     <li><a ui-sref="apps.home"> <span class="glyphicon glyphicon-tasks"></span>Apps Management</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-tasks"></span> Demployments</a></li>
-                    <li><a ui-sref="dashboard.home"><span class="glyphicon glyphicon-phone"></span>Dashboard</a></li>
+                    <li><a ui-sref="dployment.home"><span class="glyphicon glyphicon-tasks"></span> Dashboard</a></li>
+                    <li><a ui-sref="dashboard.home"><span class="glyphicon glyphicon-dashboard"></span>Deployment</a></li>
  
                 </ul>
            

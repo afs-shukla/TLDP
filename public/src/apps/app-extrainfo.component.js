@@ -4,9 +4,12 @@
 angular.module('apps')
 .component('appExtrainfo', {
   templateUrl: 'src/apps/app-extrainfo.view.html',
-  // bindings: {
-  //   appdetails: '<'
-  // }
+   bindings: {
+     jiraDetails: '<',
+     svnDetails: '<',
+     sonarDetails: '<',
+     testDetails: '<'
+   },
 
   controller: AppExtraInfoController
 });
@@ -14,9 +17,7 @@ angular.module('apps')
 AppExtraInfoController.$inject = ['ApiPath'];
 function AppExtraInfoController(ApiPath) {
   var $ctrl = this;
-  // $ctrl.searchapps=function (){
-  // 	console.log($ctrl.searchparams)
-  // }
+  
 }
 
 })();

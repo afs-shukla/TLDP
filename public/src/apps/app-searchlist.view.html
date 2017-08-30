@@ -3,27 +3,41 @@
 	 	<div class="panel panel-primary dashboard-panel">
 	    	
 	 		<!-- <div class="panel-heading">Application Details</div> -->
-	 		<div class="panel-body fixed-panel">
-	 		<table st-table="$ctrl.appslist" class="table table-striped">
+	 		<div class="panel-body panel-default">
+	 		<table st-table="$ctrl.appDetails" class="table table-striped">
 				<thead>
+				
 				<tr>
-					<th st-sort="appid">first name</th>
-					<th st-sort="appname">last name</th>
+					<th st-sort="appid">AppID</th>
+					<th st-sort="appname">AppName</th>
+					<th st-sort="appDesc">Description</th>
+					<th st-sort="appType">AppType</th>
+					<th st-sort="appContainer">AppContainer</th>
+					<th st-sort="appTeam">AppTeam</th>
+					<th st-sort="appDepType">appDepType</th>
+					<th > </th>
+					<th ></th>
+
+
+
 				</tr>
-			<!-- 	<tr>
-					<th>
-						<input st-search="'firstName'" placeholder="search for firstname" class="input-sm form-control" type="search"/>
-					</th>
-					<th colspan="4">
-						<input st-search placeholder="global search" class="input-sm form-control" type="search"/>
-					</th>
-				</tr> -->
+			
 				</thead>
 				<tbody>
-				<tr ng-repeat="row in $ctrl.appslist">
-					<td>{{row.appid| uppercase}}</td>
-					<td>{{row.appname}}</td>
-					
+				<tr ng-repeat="row in $ctrl.appDetails">
+				
+					<td>{{row.appId| uppercase}}</td>
+					<td>{{row.appName}}</td>
+					<td>{{row.appDesc}}</td>
+					<td>{{row.appType}}</td>
+					<td>{{row.appContainer}}</td>
+					<td>{{row.appTeam}}</td>
+					<td>{{row.appDepType}}</td>
+					<!-- <td><button type="button" class="btn btn-link" ng-click="$ctrl.viewAppDetails(row.id)"><span class="glyphicon glyphicon-eye-open"></span> View</button>	</td> -->
+					<td><md-button class="md-raised" ng-click="$ctrl.viewAppDetails(row.id)">
+					<span class="glyphicon glyphicon-eye-open"></span>View</md-button></td>
+					<td><button type="button" class="btn btn-link" ng-click="$ctrl.addNewApp(app)"><span class="glyphicon glyphicon-new-window"></span> Deploy</button></td>
+				    
 					
 				</tr>
 				</tbody>

@@ -88,6 +88,74 @@ tfoot td {
   overflow-y: scroll;
 }
 
-{
-    
+.row-style{
+    height:100%;
 }
+.deploy-container{
+    color: black;
+    /*height:600px;*/
+}
+
+
+
+.left-box {
+  border: 2px;
+  background-color:white;
+  border-color: black;
+  height: 100%;
+  
+}
+
+.right-box {
+  border: 2px;
+  border-color: black;
+  background-color:white;
+
+  height:100%;
+
+ }
+
+
+
+.search-box {
+    border: 2px;
+    background-color:white;
+    height: 100px;
+    border-color: blue;
+}
+
+.searchlist-box {
+    border: 2px;
+    background-color:white;
+    height: 500px;
+    border-color: blue;
+}
+
+
+.deploydetails-box{
+  border: 2px;
+  background-color:red;
+  height:100px;
+  border-color: blue;
+}
+
+.console-box{
+  border: 10px;
+  border-left: 10px;
+  background-color:white;
+  height:500px;
+  border-color: #999966;
+
+}
+
+
+.md-dialog-container {
+  position: absolute;
+}
+
+md-dialog {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+

@@ -1,22 +1,27 @@
     
     <link rel="stylesheet" href="css/deploy.css"> 
-    <div class="content">
- 	<div class="panel panel-primary dashboard-panel">
+   <!--  <div class="content"> -->
+ 	
     	<!-- <div class="container container-fluid" > -->
  	<!-- <div class="panel-heading">Application Details</div> -->
- 	<div class="panel-body">
-		<div class="row">
+ 	<div class="row">
+ 	<div class="col-md-2"/>
+ 	<div class="col-md-8">
+ 	
+		<div class="panel panel-primary" >
+		<div class="panel-body">
 		  <form name="appform" class="form-vertical">
 			<div id="column1" class="col-md-6">
-		 	  
+		 	 
 			  <div class="form-group">
 			    <label  for ="appId" class="control-label col-sm-8" >App Id:</label> 
-			    <input type="text" id="appId" class="form-control" ng-model="$ctrl.app.appId" />
+			    <input type="text" id="appId" class="form-control" ng-model="$ctrl.app.appId" 
+			    placeholder="App ID"/>
 			    
 			  </div>
 			  <div class="form-group">
 			    <label  for ="appName" class="control-label col-sm-8">App Name:</label>
-			    <input type="text" id="appName" class="form-control" ng-model="$ctrl.app.appName" />
+			    <input type="text" id="appName" class="form-control" ng-model="$ctrl.app.appName" placeholder="App Name"/>
 			  </div>
 			   <div class="form-group">
 			    <label  for="appType" class="control-label col-sm-8">App Type:</label>
@@ -68,24 +73,21 @@
 		 		ng-model="$ctrl.app.appPlaybook" />
 		 
 		 	</div>
-		 </div>
 
-	        <div  class="pull-right button-panel">
+		 	<div  class="pull-lef button-panel">
 	           <input type="submit" class="btn btn-primary" ng-click="$ctrl.addNewApp(app)"/>	            
 	        </div>
-    	    <div  id:"message" ng-if="$ctrl.message" class="alert alert-success">
-                  <strong>{{$ctrl.message}} </strong>
-    	    </div>
+
+	     
+		  </div>
+
+	        
+    	   
 		 </form>
 
 		</div>
 		</div>
-		 <!-- <div class="panel-footer ">
-	        <div class="pull-right">
-	            <a href="#" class="btn btn-primary">Learn More</a>
-	            <a href="#" class="btn btn-default">Go Back</a>
-	        </div>
-    	</div> -->
-	<!-- </div> -->
+	</div>
+	
+		
    </div>
-</div>

@@ -1,0 +1,74 @@
+<div class="content">
+    <div  class="container-fluid deploy-container"> 
+        <div class="row" >
+            <div class="col-xs-12 col-md-12 col-lg-12  left-box">
+               <div class="panel panel-primary dashboard-panel">
+    
+
+			 	<div class="panel-body">
+					<div class="row">
+					  <form name="userform" class="form-vertical">
+						<div id="column1" class="col-md-3">
+					 	  
+						  <div class="form-group">
+						     <input type="text" id="userId" class="form-control" ng-model="$uctrl.user.userId" placeholder="User Id -USER0001" />
+						    
+						  </div>
+						  <div class="form-group">
+						   
+						    <input type="text" id="userFirstName" class="form-control" ng-model="$uctrl.user.userFirstName"  placeholder="User First Name"/>
+						  </div>
+						   <div class="form-group">
+						 
+						    <input type="text" id="userLastName" class="form-control" ng-model="$uctrl.user.userLastName" placeholder="User Last Name" /> 
+						  </div>
+						  <div class="form-group">
+						    
+						    <input type="text" id="userManager" class="form-control" ng-model="$uctrl.user.userManager" 
+						    placeholder="User Manager Name"/> 
+						  </div>
+						  
+						
+					</div>
+
+					<div  id="column2" class="col-md-3">
+					   
+						  <div class="form-group">
+						   
+						    <input type="text" id="userProcessName" class="form-control" ng-model="$uctrl.user.userProcessName" placeholder="User Processs Name"/> 
+						  </div>
+						  <div class="form-group">
+						    
+						    <input type="text" id="userTeam" class="form-control" 
+						     ng-model="$uctrl.user.userTeam" placeholder="User Team" />
+						  </div>
+						  <div class="form-group">
+						    
+						    <input type="text" id="userPhone" class="form-control" ng-model="$uctrl.user.userPhone" 
+						    placeholder="User Phone"/> 
+						  </div>
+						  <div class="form-group">
+			             	
+			             	<input type="text" id="userEmail" class="form-control" ng-model="$uctrl.user.userEmail"
+			             	placeholder="User Email " />
+					 	  </div>
+						
+					</div>
+				        <div  class="pull-right button-panel">
+				           <input type="submit" class="btn btn-primary" ng-click="$uctrl.addUser(user)"/>	            
+				        </div>
+			    	    <div  id:"message" ng-if="$uctrl.message" class="alert alert-success">
+			                  <strong>{{$uctrl.message}} </strong>
+			    	    </div>
+					 </form>
+
+					</div>
+					</div>
+			
+			   </div>
+
+            </div>
+        </div>
+         
+    </div>
+</div>

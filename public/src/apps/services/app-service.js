@@ -9,12 +9,9 @@ AppsService.$inject = ['$http', 'ApiPath'];
 function AppsService($http, ApiPath) {
   var appsService = this;
 
-  appsService.findApps = function (searchparams) {
+  appsService.searchApps  = function (searchparams) {
     console.log("AppsService:"+searchparams.appid)
-    return $http.get(ApiPath + '/getAllApps',
-    	{
-    		params:{appid:searchparams.appid, appname:searchparams.appname, desc:searchparams.desc }
-    	})
+    return $http.get(ApiPath + '/searchApps'+'/'+searchparams.appid+'/'+searchparams.appname+'/'+searchparams.description)
   };
 
   appsService.findAppById = function (appid) {

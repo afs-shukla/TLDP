@@ -3,13 +3,14 @@
 /**
  * app module for magaging the apps 
  */
-var appmodule=angular.module('apps', ['ngDialog','ui.router', 'common','smart-table'])
+var appmodule=angular.module('apps', ['ngDialog','ui.router', 'common','smart-table','ngMaterial'])
 
 appmodule.config(routeConfig);
 
 /**
  * Configures the routes and views
  */
+
 routeConfig.$inject = ['$stateProvider'];
 function routeConfig ($stateProvider) {
   // Routes
@@ -28,6 +29,7 @@ function routeConfig ($stateProvider) {
        controller: 'AddingNewAppController',
         controllerAs: '$ctrl'
      })
+     
      ;
 }
 

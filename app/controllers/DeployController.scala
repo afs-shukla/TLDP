@@ -23,7 +23,7 @@ import play.api.libs.json._
 
 
 case class DeployVo(id:Long,depNumber:String, userId:Long, appId: Long, depDate: String
-                  , depEnvironment:String, depStatus:String, depRemarks:String,
+                  , depEnvironment:String, depStatus:String, depRemarks:String,fixVersion:String,
                     jiraDetails:List[JiraDetail],
                     svnDetails:List[SvnDetail],
                     sonarDetails:List[SonarDetail])
@@ -60,6 +60,7 @@ class DeployController  @Inject()(implicit ec: ExecutionContext, depRepo: Deploy
       (JsPath \ "depEnvironment").write[String] and
       (JsPath \ "depStatus").write[String] and
       (JsPath \ "depRemarks").write[String] and
+      (JsPath \ "fixVersion").write[String] and
       (JsPath \ "jiraDetails").write[List[JiraDetail]] and
       (JsPath \ "svnDetails").write[List[SvnDetail]] and
       (JsPath \ "sonarDetails").write[List[SonarDetail]]
@@ -75,6 +76,7 @@ class DeployController  @Inject()(implicit ec: ExecutionContext, depRepo: Deploy
       (JsPath \ "depEnvironment").read[String] and
       (JsPath \ "depStatus").read[String] and
       (JsPath \ "depRemarks").read[String] and
+      (JsPath \ "fixVersion").read[String] and
       (JsPath \ "jiraDetails").read[List[JiraDetail]] and
       (JsPath \ "svnDetails").read[List[SvnDetail]] and
       (JsPath \ "sonarDetails").read[List[SonarDetail]]
@@ -116,14 +118,16 @@ class DeployController  @Inject()(implicit ec: ExecutionContext, depRepo: Deploy
   def addDeployment= Action { implicit request =>
     val body = request.body
     val jsonBody:Option[JsValue] = body.asJson
-    val formatter = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm:ss")
+    //val formatter = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm:ss")
+    val formatter = DateTimeFormat.forPattern("dd/MM/yyyy")
 
     jsonBody.map {
       // println("Add app in controller:"+)
       json => {
+        logger.info("Json DeployVo:"+json)
         val dep = json.as[DeployVo]
         val id=Await.result(depRepo.create(dep.depNumber, dep.userId,dep.appId, new Timestamp(formatter.parseDateTime(dep.depDate).getMillis),
-          dep.depEnvironment, dep.depStatus, dep.depRemarks), Duration.Inf)
+          dep.depEnvironment, dep.depStatus, dep.depRemarks,dep.fixVersion), Duration.Inf)
 
 
         if (id > 0) {
@@ -158,7 +162,7 @@ class DeployController  @Inject()(implicit ec: ExecutionContext, depRepo: Deploy
        json => {
         val depVo=json.as[DeployVo]
          val dep=Deploy(depVo.id,depVo.depNumber, depVo.userId,depVo.appId,new Timestamp(formatter.parseDateTime(depVo.depDate).getMillis),
-         depVo.depEnvironment, depVo.depStatus, depVo.depRemarks)
+         depVo.depEnvironment, depVo.depStatus, depVo.depRemarks,depVo.fixVersion)
         val id = Await.result(depRepo.updateDeployment(dep),Duration.Inf)
         if(id>0) {
           logger.info("deployment is updated for id:"+id)
@@ -178,6 +182,37 @@ class DeployController  @Inject()(implicit ec: ExecutionContext, depRepo: Deploy
 
   }
 
+  private def checkForEmptyOrNull(field:String):Option[String]={
+    if ( field !=null && (!field.isEmpty) )
+      Some(field)
+    else
+      None
+  }
+
+  private def checkForEmptyOrNullForLong(field:Long):Option[Long]={
+    if ( field !=null)
+      Some(field)
+    else
+      None
+  }
+  def searchDeployments(depNumber:String,appId:Long,userId:Long,depDate:String,depStatus:String,fixVersion:String)= Action {
+    val result = Await.result(depRepo.searchDeployments(checkForEmptyOrNull(depNumber),checkForEmptyOrNullForLong(appId),checkForEmptyOrNullForLong(userId),
+      checkForEmptyOrNull(depDate),checkForEmptyOrNull(depStatus),checkForEmptyOrNull(fixVersion)), Duration.Inf)
+    result match {
+      case Nil => Ok(Json.prettyPrint(Json.obj(
+        "status" -> "200",
+        "message" -> s"Deployment List is empty"))).as("json/application").as("text/plain")
+      case x :: sx => {
+        Ok(Json.prettyPrint(Json.obj(
+          "status" -> 200,
+          "deplist" -> result,
+          "message" -> s"Deployment list size:${result.size}"))).as("json/application").as("text/plain")
+      }
+    }
+  }
+
+
+
 
 
   def findDeploymentById(id:Long)=Action {
@@ -188,8 +223,8 @@ class DeployController  @Inject()(implicit ec: ExecutionContext, depRepo: Deploy
         val svnDetails=Await.result(svnRepo.findSvnDetailsByDeplId(e.id),Duration.Inf)
         val sonarDetails=Await.result(sonarRepo.findSonarDetailsByDeplId(e.id),Duration.Inf)
 
-        val deployResult=DeployVo(e.id,e.depNumber,e.userId,e.appId,e.depDate.toString,e.depEnvironment,e.depStatus,e.depRemarks
-          ,jiraDetails,svnDetails ,sonarDetails)
+        val deployResult=DeployVo(e.id,e.depNumber,e.userId,e.appId,e.depDate.toString,e.depEnvironment,e.depStatus,e.depRemarks,
+          e.fixVersion,jiraDetails,svnDetails ,sonarDetails)
 
         Ok(Json.prettyPrint(Json.obj(
         "status" -> 200,
@@ -204,12 +239,12 @@ class DeployController  @Inject()(implicit ec: ExecutionContext, depRepo: Deploy
 
   }
 
-  private def checkForEmptyOrNull(field:String):Option[String]={
+/*  private def checkForEmptyOrNull(field:String):Option[String]={
     if ( field !=null && (!field.isEmpty) )
       Some(field)
     else
       None
-  }
+  }*/
 
   def searchDeploymentsByAppId(appId:Long)= Action {
     val result = Await.result(depRepo.findByAppId(appId), Duration.Inf)

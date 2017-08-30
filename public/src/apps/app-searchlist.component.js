@@ -4,46 +4,46 @@
 angular.module('apps')
 .component('searchList', {
   templateUrl: 'src/apps/app-searchlist.view.html',
-  // bindings: {
-  //   appdetails: '<'
-  // }
+   bindings: {
+    appDetails: '<'
+   },
 
   controller: AppsSearchListController
 });
 
-AppsSearchListController.$inject = ['ApiPath'];
-function AppsSearchListController(ApiPath) {
+AppsSearchListController.$inject = ['ApiPath','ngDialog','$mdDialog'];
+
+function AppsSearchListController(ApiPath,ngDialog,$mdDialog) {
   var $ctrl = this;
- var
-        appidList = ['Pierre', 'Pol', 'Jacques', 'Robert', 'Elisa'],
-        appnameList = ['Dupont', 'Germain', 'Delcourt', 'bjip', 'Menez'];
+ 
+   $ctrl.viewAppDetails=function(targetId,$event){
+    console.log("targetId",targetId);
+    $ctrl.findbyid=findElement($ctrl.appDetails,"id",targetId);
+    console.log("findbyid", $ctrl.findbyid);
+    
+      var parentEl = angular.element(document.body);
+       $mdDialog.show({
+         parent: parentEl,
+         targetEvent: $event,
+         templateUrl:'src/apps/apps-details.modal.view.html',
+             
+         locals: { appsdtls: $ctrl.findbyid },
+         controller: 'DialogController',
+         clickOutsideToClose: true,
+         escapeToClose: true
+      });
 
+   };
 
-    function createRandomItem() {
-        var
-            appid = appidList[Math.floor(Math.random() * 4)],
-            appname = appnameList[Math.floor(Math.random() * 4)];
-          
+   function findElement(arr, propName, propValue) {
+  for (var i=0; i < arr.length; i++)
+    if (arr[i][propName] == propValue)
+      return arr[i];
 
-        return{
-            appid: appid,
-            appname: appname
-           
-        };
-    }
   
-   
-  $ctrl.appslist=[];
+}
+   console.log("Applist",$ctrl.appDetails);
 
-  for (var j = 0; j < 10; j++) {
-        $ctrl.appslist.push(createRandomItem());
-    }
-
-  $ctrl.itemsByPage=5;  
-  
-  // $ctrl.getAppsList={
-  // 	"applist":[{"appid":Apr Gloss","appname":"Apr Gloss Clearing System"},{"appid":"Mair1","appname":"Mairr Gui app for Gloss"}]
-  // }
 }
 
 })();

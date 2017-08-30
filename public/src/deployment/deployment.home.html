@@ -1,0 +1,106 @@
+<div class="content">
+    <div  class="container-fluid deploy-container"> 
+
+        <div class="row">
+            <div class="col-xs-12 col-md-12 col-lg-12  left-box">
+	            <div class="panel panel-default">
+	             <div class="panel-body">
+	             <form class="form-inline">
+					  <div class="form-group">
+					    <input type="text" class="form-control" id="depNumber" ng-model="$dctrl.searchparam.depNumber" placeholder="Deployment Number">
+					  </div>
+					  <div class="form-group">
+					    <input type="number" class="form-control" id="userId" number-converter
+					     ng-model="$dctrl.searchparam.userId" placeholder="User Id" value="0">
+					     <span class="glyphicon glyphicon-search" ng-click="$dctrl.openApplicationSearch()">
+
+					  </div>
+					  <div class="form-group">
+					    <input type="number" class="form-control" id="appId" number-converter
+					    ng-model="$dctrl.searchparam.appId" placeholder="Application Id" value="0"><span class="glyphicon glyphicon-search" ng-click="$dctrl.openApplicationSearch()">
+					  </div>
+					  <div class="form-group">
+					    <input type="text" class="form-control" id="depDate" ng-model="$dctrl.searchparam.depDate" placeholder="Deployment Date">
+					  </div>
+					  <div class="form-group">
+					    <input type="text" class="form-control" id="depStatus" ng-model="$dctrl.searchparam.depStatus" placeholder="Deployment Status">
+					  </div>
+					  <div class="form-group">
+					    <input type="text" class="form-control" id="fixVersion" ng-model="$dctrl.searchparam.fixVersion" placeholder="Deployment Fixversion">
+					  </div>
+					 
+					  <button type="submit" class="btn btn-primary" ng-click="$dctrl.searchDeployments(searchparam)"><span class="glyphicon glyphicon-search"></button>
+
+				</form>
+				</div>
+				</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-12 col-lg-12  left-box">
+             <div class="panel panel-default">
+	             <div class="panel-body">
+                <table st-table="$dctrl.depDetails" class="table table-striped">
+							<thead>
+		
+								<tr>
+									<th st-sort="depNumber">Dep Number</th>
+									<th st-sort="userId">User Id</th>
+									<th st-sort="appId">App Id</th>
+									<th st-sort="depDate">Dep Date</th>
+									<th st-sort="depEnvironment">Target Env</th>
+									<th st-sort="depStatus">Status</th>
+									<th st-sort="depRemarks">Remarks</th>
+									<th st-sort="fixVersion">Fix Version</th>
+									<th></th>
+								</tr>
+			
+							</thead>
+							<tbody>
+								<tr ng-repeat="row in $dctrl.depDetails">
+									<td>{{row.depNumber| uppercase}}</td>
+									<td>{{row.userId}}</td>
+									<td>{{row.appId}}</td>
+									<td>{{row.depDate}}</td>
+									<td>{{row.depEnvironment}}</td>
+									<td>{{row.depStatus}}</td>
+									<td>{{row.depRemarks}}</td>
+									<td>{{row.fixVersion}}</td>
+									<td><button type="button" class="btn btn-link" ng-click="$dctrl.findExtraInfoByDepId(row.id)"><span class="glyphicon glyphicon-eye-open"></span>Extra Info</button>	</td>
+																	
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="2" class="text-center">
+										<div st-pagination="" st-items-by-page="5" st-displayed-pages=""></div>
+									</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+
+            </div>
+
+            </div>
+           <!--  <div class="row ">
+                <div class="col-xs-12 col-md-12 col-lg-12">
+            	<div  class="pull-right button-panel">
+                    <button type="button" class="btn btn-primary" ng-click="$dctrl.findExtraInfo(dep)" >Fetch Extra Info</button>              
+                </div>
+                </div>
+            </div> -->
+             
+           <div class="row">
+					 
+				<div  id="column2" class="col-xs-12 col-md-12 col-lg-12">
+					<app-extrainfo jira-details="$dctrl.jiraDetails" svn-details="$dctrl.svnDetails" 
+                  sonar-details="$dctrl.sonarDetails"></app-extrainfo>
+				</div>	
+			   
+			</div>
+		           
+        
+    </div>
+</div>

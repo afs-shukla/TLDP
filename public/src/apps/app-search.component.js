@@ -15,17 +15,32 @@ AppSearchController.$inject = ['AppsService','$state'];
 function AppSearchController(AppsService,$state) {
   var $ctrl = this;
   $ctrl.errormsg=""
-  $ctrl.appslist=[];
+  $ctrl.appsList=[];
+
+
+  
   $ctrl.searchapps=function (){
+    $ctrl.errormsg="";
   	console.log($ctrl.searchparams)
-  	var appsPromise=AppsService.findApps($ctrl.searchparams)
-       appsPromise.then(function(response){
-       	console.log("Success Response:"+response.data);
-       	return response.data
+  	var appsPromise=AppsService.searchApps($ctrl.searchparams)
+       appsPromise.then(
+        function(response){
+       	console.log("Success Response:"+response.data.appslist);
+       	$ctrl.appsList=response.data.appslist;
+        console.log("appslist",$ctrl.appsList);
+        $ctrl.searchparams=null;
 
        },function(reason){
        	  console.log("Error Reason:"+reason);
-       	  $ctrl.errormsg=reason;
+       	  $ctrl.errormsg=reason.data.message;
+             ngDialog.openConfirm({
+                    template:
+                        '<span class="glyphicon glyphicon-ok"></span>' +
+                        'Error While getting the applicaitons ',
+                    plain: true,
+                    className: 'ngdialog-theme-default'
+                });
+
        })
    
   };
@@ -35,9 +50,7 @@ function AppSearchController(AppsService,$state) {
     $state.go('apps.new');
   };
 
-  // $ctrl.searchappsnew=function(){
-  //   console.log("app new search");
-  // }
+  
 }
 
 })();
