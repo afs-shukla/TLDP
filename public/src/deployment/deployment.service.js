@@ -31,31 +31,23 @@ function DeployService($http, ApiPath) {
   };
 
   depService.searchDeploymentsByAppId = function (appid) {
-    return $http.get(ApiPath + '/findAppById',
-    	{
-    		params:{appid:appid}
-    	})
-  };
-
-   depService.searchDeploymentsByUserId = function (appid) {
-    return $http.get(ApiPath + '/removeAppById',
-    	{
-    		params:{appid:appid}
-    	})
-  };
-
-  depService.searchDeploymentsByDate = function (appid) {
-    return $http.get(ApiPath + '/removeAppById',
-    	{
-    		params:{appid:appid}
-    	})
-  };
-
-   depService.searchDeploymentsByStatus = function (depdata) {
-    console.log("In AppService addApp ",depdata)
-    return $http.post(ApiPath + '/addDeployment', depdata)
+    return $http.get(ApiPath + '/findAppById')
     	
   };
+
+   depService.searchDeploymentsByStatus = function (status) {
+    console.log("DeployService findByStatus",status)
+    return $http.get(ApiPath + '/findByStatus' + '/'+status)
+    	
+  };
+
+  depService.downloadReleaseNote = function (depid) {
+   delete $http.defaults.headers.common['X-Requested-With']; 
+   return $http.get(ApiPath + '/getReleaseNote' + '/'+depid, {responseType:'text/html'
+        })
+  };
+
+  
 
   depService.searchDeploymentsByFixversion = function (appdata) {
     return $http.get(ApiPath + '/removeAppById',

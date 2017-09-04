@@ -20,7 +20,7 @@ function ExtrInfoService($http, ApiPath) {
   };
 
    extInfoService.findSvnDetailsByDepId = function (depid) {
-    console.log("In AppService addApp ",depdata)
+   
     return $http.get(ApiPath + '/findSvnDetailsByDepId'+'/'+depid )
     	
   };

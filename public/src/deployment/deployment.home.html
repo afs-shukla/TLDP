@@ -2,41 +2,70 @@
     <div  class="container-fluid deploy-container"> 
 
         <div class="row">
-            <div class="col-xs-12 col-md-12 col-lg-12  left-box">
-	            <div class="panel panel-default">
-	             <div class="panel-body">
-	             <form class="form-inline">
+             <div class="col-xs-12 col-md-12 col-lg-12"> 
+	          <div class="panel panel-default">
+	           <div class="panel-body">
+	              <form class="form-vertical"> 
+	                <div class="col-md-2">
 					  <div class="form-group">
 					    <input type="text" class="form-control" id="depNumber" ng-model="$dctrl.searchparam.depNumber" placeholder="Deployment Number">
 					  </div>
+					</div>
+					 <div class="col-md-1">
 					  <div class="form-group">
-					    <input type="number" class="form-control" id="userId" number-converter
-					     ng-model="$dctrl.searchparam.userId" placeholder="User Id" value="0">
-					     <span class="glyphicon glyphicon-search" ng-click="$dctrl.openApplicationSearch()">
+					    <input type="text" class="form-control" id="userId" 
+					     ng-model="$dctrl.searchparam.userId" placeholder="UserId"  required> 
+					    
 
 					  </div>
+					 </div>
+					  <div class="col-md-1">
+					   <div class="form-group">
+                          <button type="button" class="btn btn-primary"  ng-click="$dctrl.openApplicationSearch()" </button>
+                          <span class="glyphicon glyphicon-search"></span> 
+                       
+                      </div>
+					 </div>
+					
+					<div class="col-md-1 ">
 					  <div class="form-group">
-					    <input type="number" class="form-control" id="appId" number-converter
-					    ng-model="$dctrl.searchparam.appId" placeholder="Application Id" value="0"><span class="glyphicon glyphicon-search" ng-click="$dctrl.openApplicationSearch()">
+					    <input type="text" class="form-control" id="appId" 
+					    ng-model="$dctrl.searchparam.appId" placeholder="AppId" required >
 					  </div>
+					</div>
+					<div class="col-md-1">
+					   <div class="form-group">
+                          <button type="button" class="btn btn-primary"  ng-click="$dctrl.openApplicationSearch()" </button>
+                          <span class="glyphicon glyphicon-search"></span> 
+                       
+                      </div>
+					 </div>
+					 <div class="col-md-2">
 					  <div class="form-group">
-					    <input type="text" class="form-control" id="depDate" ng-model="$dctrl.searchparam.depDate" placeholder="Deployment Date">
+					    <input type="date" class="form-control" id="depDate" ng-model="$dctrl.searchparam.depDate" placeholder="Deployment Date">
 					  </div>
+					</div>
+					 <div class="col-md-2 ">
 					  <div class="form-group">
 					    <input type="text" class="form-control" id="depStatus" ng-model="$dctrl.searchparam.depStatus" placeholder="Deployment Status">
 					  </div>
-					  <div class="form-group">
-					    <input type="text" class="form-control" id="fixVersion" ng-model="$dctrl.searchparam.fixVersion" placeholder="Deployment Fixversion">
 					  </div>
-					 
-					  <button type="submit" class="btn btn-primary" ng-click="$dctrl.searchDeployments(searchparam)"><span class="glyphicon glyphicon-search"></button>
+					 <div class="col-md-1">
+					  <div class="form-group">
+					    <input type="text" class="form-control" id="fixVersion" ng-model="$dctrl.searchparam.fixVersion" placeholder="Fixversion">
+					  </div>
+					  </div>
+					   <div class="col-md-1">
+					  <button type="submit" class="btn btn-primary" ng-click="$dctrl.searchDeployments(searchparam)">Search</button>
+					  </div>
 
-				</form>
-				</div>
-				</div>
-            </div>
+				 </form> 
+			</div>
+		</div>
+            
         </div>
-        <div class="row">
+     </div>
+     <div class="row">
             <div class="col-xs-12 col-md-12 col-lg-12  left-box">
              <div class="panel panel-default">
 	             <div class="panel-body">

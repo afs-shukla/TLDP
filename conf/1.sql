@@ -89,6 +89,16 @@ CREATE TABLE T_DEPLOY (
          FOREIGN KEY (DEP_ID) REFERENCES T_DEPLOY (ID)
         );
 
+   CREATE TABLE T_RELEASE_NOTES (
+                 ID integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                 DEP_ID integer NOT NULL,
+                 REL_NOTE_TYPE varchar(100),
+                 RELEASE_NOTE_NAME varchar(100),
+                 RELEASE_NOTE_DATA clob,
+                 RELNOTE_DATE date,
+                 FOREIGN KEY (DEP_ID) REFERENCES T_DEPLOY (ID)
+                );
+
 
 
 
@@ -102,5 +112,7 @@ DROP TABLE USER_APP;
 DROP TABLE T_DEPLOY;
 DROP TABLE T_SVN_DETAIL;
 DROP TABLE T_JIRA_DETAILS;
-DROP TABLE T_SONAR_DETAILS
+DROP TABLE T_SONAR_DETAILS;
+DROP TABLE T_RELEASE_NOTES;
+
 

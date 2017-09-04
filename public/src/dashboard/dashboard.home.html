@@ -9,35 +9,55 @@
         
                 <div class="panel-body">
                  <!-- <div class="row"> -->
-                  <form name="depform" class="form-vertical">
+                  <form name="depform" class="form-vertical" >
                   <div id="column1" class="col-md-3">
                       
                       <div class="form-group">
-                         <input type="text" id="depNumber" class="form-control" ng-model="$dctrl.dep.depNumber" placeholder="Deployment Number" />
+                         <input type="text" id="depNumber" class="form-control" ng-model="$dctrl.dep.depNumber" placeholder="Deployment Number" required/>
                         
                       </div>
                       <div class="form-group">
-                       
-                        <input type="number" id="appId" class="form-control" number-converter ng-model="$dctrl.dep.appId"  placeholder="Application Id">
-                        <span class="glyphicon glyphicon-search"  ng-click="$dctrl.openApplicationSearch()"></span> </input>
-                      </div>
-                      
+                        
+                        <input type="date" id="depDate" class="form-control" ng-model="$dctrl.dep.depDate" 
+                        placeholder="dd/MM/yyyy"/> 
+                      </div>                
                         
                      
                     </div>
-                    <div id="column2"class="col-md-3">
+                    <div id="column2"class="col-md-2">
                        <div class="form-group">
                      
                         <input type="number" id="userId" class="form-control" number-converter ng-model="$dctrl.dep.userId" placeholder="User Id" /> 
                       </div>
-                      <div class="form-group">
-                        
-                        <input type="text" id="depDate" class="form-control" ng-model="$dctrl.dep.depDate" 
-                        placeholder="Deployment Date"/> 
+
+                       <div class="form-group">
+                       
+                        <input type="number" id="appId" class="form-control" number-converter ng-model="$dctrl.dep.appId"  placeholder="Application Id"/>
+
+                      
                       </div>
+                      
                       
                     
                   </div>
+                  <div id="column2"class="col-md-1">
+                       <div class="form-group">
+                          <button type="button" class="btn btn-primary"  ng-click="$dctrl.openApplicationSearch()" </button>
+                          <span class="glyphicon glyphicon-search"></span> 
+                       
+                      </div>
+
+                      <div class="form-group">
+                                              
+                        <button type="button" class="btn btn-primary"  ng-click="$dctrl.openApplicationSearch()" </button>
+                        <span class="glyphicon glyphicon-search"></span> 
+                       
+                      </div>
+                      
+                      
+                    
+                  </div>
+
 
                   <div  id="column3" class="col-md-3">
                      
@@ -64,11 +84,17 @@
                       </div>
                           
                         <div  class="pull-right button-panel">
-                           <input type="submit" class="btn btn-primary" ng-click="$dctrl.addDeployment(dep)"/>              
+                           <input type="submit" class="btn btn-primary" ng-click="$dctrl.addDeployment(dep)"
+                   ng-disabled="depform.depNumber.$dirty && depform.depNumber.$invalid" />              
                         </div>
-                        <div  class="pull-right button-panel">
+ 
+
+                       <!--  <div  class="pull-right button-panel">
+                           <button type="buttoncreateReleaseNote" class="btn btn-primary" ng-click="$dctrl.(dep)" >Release Note</button>              
+                        </div>
+                        <div  class="pull-left button-panel">
                            <button type="button" class="btn btn-primary" ng-click="$dctrl.findExtraInfo(dep)" >Fetch Extra Info</button>              
-                        </div>
+                        </div> -->
                      </div>   
                    </form>
                      
@@ -78,7 +104,68 @@
                  </div>
                </div>
            </div>
-        
+                   <div class="row">
+                    <div class="col-xs-12 col-md-12 col-lg-12  left-box">
+                     <div class="panel panel-default">
+                       <div class="panel-body">
+                        <table st-table="$dctrl.duefordeploy" class="table table-striped">
+                      <thead>
+            
+                        <tr>
+                          
+                          <th st-sort="depNumber">Dep Number</th>
+                          <th st-sort="userId">User Id</th>
+                          <th st-sort="appId">App Id</th>
+                          <th st-sort="depDate">Dep Date</th>
+                          <th st-sort="depEnvironment">Target Env</th>
+                          <th st-sort="depStatus">Status</th>
+                          <th st-sort="depRemarks">Remarks</th>
+                          <th st-sort="fixVersion">Fix Version</th>
+                          <th  st-sort="">Rel Note</th>
+                          <th  st-sort="">Rel Note</th>
+                          <th>            Deploy</th>
+                          
+                        </tr>
+              
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="row in $dctrl.duefordeploy">
+
+                          <td>{{row.depNumber| uppercase}}</td>
+                          <td>{{row.userId}}</td>
+                          <td>{{row.appId}}</td>
+                          <td>{{row.depDate}}</td>
+                          <td>{{row.depEnvironment}}</td>
+                          <td>{{row.depStatus}}</td>
+                          <td>{{row.depRemarks}}</td>
+                          <td>{{row.fixVersion}}</td>
+                          <td><button type="button" class="btn btn-warning" ng-click="$dctrl.createReleaseNote(row.id)"><span class="glyphicon glyphicon-save">Create </button> </td>
+                        
+                          <!-- <td><button type="button" class="btn btn-link" ng-click="$dctrl.downloadReleaseNote(row.id)"><span class="glyphicon glyphicon-eye-open"></span>View   </button> </td>
+                          <td> -->
+                          <td>
+                          <a target="_self" class="ui right floated btn btn-warning" 
+                          href ng-click="$dctrl.downloadReleaseNote(row.id)"> <span class="glyphicon glyphicon-eye-open"></span>View</a>
+                          </td>
+                           <td><button type="button" class="btn btn-warning" ng-click="$dctrl.triggerDeploy(row.id)"><span class="glyphicon glyphicon-eye-open"></span>Deploy</button> </td>
+                          
+                                          
+                        </tr>
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <td colspan="2" class="text-center">
+                            <div st-pagination="" st-items-by-page="5" st-displayed-pages=""></div>
+                          </td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </div>
+
+            </div>
+            </div>
+
            <div class ="row">
            <div class="col-xs-12 col-md-12 col-lg-12 ">
                

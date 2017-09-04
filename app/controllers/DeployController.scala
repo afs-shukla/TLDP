@@ -33,7 +33,7 @@ class DeployController  @Inject()(implicit ec: ExecutionContext, depRepo: Deploy
                                   jiraRepo:JiraRepos,sonarRepo:SonarRepo,
                                   val controllerComponents: ControllerComponents) extends BaseController with LazyLogging {
 
-
+  val format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SS'Z'")
   implicit object timestampFormat extends Format[Timestamp] {
     val format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SS'Z'")
     def reads(json: JsValue) = {
@@ -118,15 +118,15 @@ class DeployController  @Inject()(implicit ec: ExecutionContext, depRepo: Deploy
   def addDeployment= Action { implicit request =>
     val body = request.body
     val jsonBody:Option[JsValue] = body.asJson
-    //val formatter = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm:ss")
-    val formatter = DateTimeFormat.forPattern("dd/MM/yyyy")
+    val formatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SS")
+    //val formatter = DateTimeFormat.forPattern("dd/MM/yyyy")
 
     jsonBody.map {
       // println("Add app in controller:"+)
       json => {
         logger.info("Json DeployVo:"+json)
         val dep = json.as[DeployVo]
-        val id=Await.result(depRepo.create(dep.depNumber, dep.userId,dep.appId, new Timestamp(formatter.parseDateTime(dep.depDate).getMillis),
+        val id=Await.result(depRepo.create(dep.depNumber, dep.userId,dep.appId, new Timestamp(format.parse(dep.depDate).getTime),
           dep.depEnvironment, dep.depStatus, dep.depRemarks,dep.fixVersion), Duration.Inf)
 
 
@@ -157,11 +157,11 @@ class DeployController  @Inject()(implicit ec: ExecutionContext, depRepo: Deploy
   def updateDeployment= Action { implicit request =>
     val body = request.body
     val jsonBody:Option[JsValue] = body.asJson
-    val formatter = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm:ss")
+    val formatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SS")
     jsonBody.map {
        json => {
         val depVo=json.as[DeployVo]
-         val dep=Deploy(depVo.id,depVo.depNumber, depVo.userId,depVo.appId,new Timestamp(formatter.parseDateTime(depVo.depDate).getMillis),
+         val dep=Deploy(depVo.id,depVo.depNumber, depVo.userId,depVo.appId, new Timestamp(format.parse(depVo.depDate).getTime),
          depVo.depEnvironment, depVo.depStatus, depVo.depRemarks,depVo.fixVersion)
         val id = Await.result(depRepo.updateDeployment(dep),Duration.Inf)
         if(id>0) {
@@ -178,6 +178,21 @@ class DeployController  @Inject()(implicit ec: ExecutionContext, depRepo: Deploy
       }
     }.getOrElse {
       BadRequest("Expecting application/json request body")
+    }
+
+  }
+
+  def findByStatus(status:String)=Action {
+    val result = Await.result(depRepo.findByStatus(status), Duration.Inf)
+    result match {
+      case x::xs =>  Ok(Json.prettyPrint(Json.obj(
+        "status" -> 200,
+        "depdetails" -> result,
+        "message" -> s"Deployments due are foung"))).as("json/application").as("text/plain")
+
+      case Nil =>  Ok(Json.prettyPrint(Json.obj(
+        "status" -> 200,
+        "message" -> s"Deployments not found s"))).as("json/application").as("text/plain")
     }
 
   }
@@ -290,5 +305,7 @@ class DeployController  @Inject()(implicit ec: ExecutionContext, depRepo: Deploy
       }
     }
   }
+
+
 
 }

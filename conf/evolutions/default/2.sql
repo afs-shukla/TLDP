@@ -92,7 +92,16 @@ CREATE TABLE T_DEPLOY (
          FOREIGN KEY (DEP_ID) REFERENCES T_DEPLOY (ID),
          PRIMARY KEY (ID)
         );
-
+ CREATE TABLE T_RELEASE_NOTES (
+                 ID integer NOT NULL IDENTITY,
+                 DEP_ID integer NOT NULL,
+                 REL_NOTE_TYPE varchar(100),
+                 RELEASE_NOTE_NAME varchar(100),
+                 RELEASE_NOTE_DATA clob,
+                 RELNOTE_DATE date,
+                 FOREIGN KEY (DEP_ID) REFERENCES T_DEPLOY (ID),
+                 PRIMARY KEY (ID)
+                );
 
         # --- !Downs
 

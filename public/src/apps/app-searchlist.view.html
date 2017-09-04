@@ -8,7 +8,8 @@
 				<thead>
 				
 				<tr>
-					<th st-sort="appid">AppID</th>
+					<th st-sort="AppId" > AppID  </th>
+					<th st-sort="App Number">App Number</th>
 					<th st-sort="appname">AppName</th>
 					<th st-sort="appDesc">Description</th>
 					<th st-sort="appType">AppType</th>
@@ -24,8 +25,8 @@
 			
 				</thead>
 				<tbody>
-				<tr ng-repeat="row in $ctrl.appDetails">
-				
+				<tr ng-click="$ctrl.populateAppId(row.appId)" ng-repeat="row in $ctrl.appDetails">
+					<td>{{row.id}}</td>
 					<td>{{row.appId| uppercase}}</td>
 					<td>{{row.appName}}</td>
 					<td>{{row.appDesc}}</td>
@@ -34,9 +35,9 @@
 					<td>{{row.appTeam}}</td>
 					<td>{{row.appDepType}}</td>
 					<!-- <td><button type="button" class="btn btn-link" ng-click="$ctrl.viewAppDetails(row.id)"><span class="glyphicon glyphicon-eye-open"></span> View</button>	</td> -->
-					<td><md-button class="md-raised" ng-click="$ctrl.viewAppDetails(row.id)">
+					<td><md-button class="md-raised md-primary" ng-click="$ctrl.viewAppDetails(row.id)">
 					<span class="glyphicon glyphicon-eye-open"></span>View</md-button></td>
-					<td><button type="button" class="btn btn-link" ng-click="$ctrl.addNewApp(app)"><span class="glyphicon glyphicon-new-window"></span> Deploy</button></td>
+					<!-- <td><button type="button" class="btn btn-info" ng-click="$ctrl.addNewApp(app)"><span class="glyphicon glyphicon-new-window"></span> Deploy</button></td> -->
 				    
 					
 				</tr>

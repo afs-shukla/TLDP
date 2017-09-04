@@ -49,6 +49,10 @@ class  DeployRepo @Inject()(val userRepo:UsersRepo)(val appRepo:AppsRepo)(protec
     db.run((deployments.filter(_.depDate > startTimestamp).filter (_.depDate < endTimestamp).to[List]).result)
   }
 
+  def findByStatus(status:String):Future[List[Deploy]]={
+    db.run((deployments.filter(_.depStatus === status).to[List]).result)
+  }
+
  def updateDeployment(deploy:Deploy)={
     val action= deployments.filter (_.id === deploy.id ).map (dep=>
       (dep.depNumber, dep.userId,dep.appId, dep.depDate,

@@ -1,0 +1,53 @@
+ <link rel="stylesheet" href="css/deploy.css"> 
+ 
+<!-- <md-dialog >
+	<md-toolbar>
+        <div class="md-toolbar-tools">
+                <h2>Application Search </h2>
+         </div>
+     </md-toolbar> -->
+    <!--  <md-dialog-content> --> 
+    
+				   <div class="container"> 
+				   <div  class="cainerainer-fixed"> 
+ 					 <div class="panel panel-primary">
+ 					 <div class="panel-heading">Create Release Notes</div>
+              			 <div class="panel-body">
+				        <div class="row">
+				            
+					            <div class="col-md-12"  >
+					             <form class="form-verticle">
+
+					                  <div class="form-group">
+									    <input type="number" class="form-control" id="depId" ng-model="$rctrl.notes.depId" placeholder="Deployment Id" disabled="true">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" id="relNoteType" ng-model="$rctrl.notes.relNoteType" placeholder="Release Note Type">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" id="relNoteName" ng-model="$rctrl.notes.relNoteName" placeholder="Release Note Name">
+									  </div>
+									 
+									  <div class="form-group">
+										  <label for="relNoteData">Release Note:</label>
+										  <textarea class="form-control" rows="5"
+										  id="relNoteData" ng-model="$rctrl.notes.relNoteData" placeholder="Release Notes "></textarea>
+										</div>
+									  <div class="form-group">
+									    <input type="date" class="form-control" id="relNoteDate" ng-model="$rctrl.notes.relNoteDate" placeholder="Release Note Date ">
+									  </div>
+									 
+									  <button type="button" class="btn btn-primary" ng-click="$rctrl.createReleaseNote(notes)">Create </button>
+									 
+					             </form>
+					             </div>
+					            
+					      </div> 
+					    </div>
+					</div> 
+				</div>
+			</div>
+				
+				
+<!-- <!-- 	</md-dialog-content> -->
+<!-- </md-dialog > -->

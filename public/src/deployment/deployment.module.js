@@ -31,6 +31,12 @@ function routeConfig ($stateProvider) {
        controller: 'DeploymentController',
        controllerAs: '$dctrl'
      })
+      .state('dployment.releasenote', {
+       url: '/dployment.new',
+       templateUrl: 'src/deployment/deployment.new.html',
+       controller: 'DeploymentController',
+       controllerAs: '$dctrl'
+     })
      
      ;
 }
